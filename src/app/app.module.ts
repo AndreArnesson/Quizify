@@ -12,12 +12,15 @@ import { FormsModule } from '@angular/forms';
 //IMPORTS
 import { MainComponent } from './main/main.component';
 import { FormComponent } from './form/form.component';
+import { HeaderComponent } from './header/header.component';
 import { PlayPageComponent } from './play-page/play-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    FormComponent,
+    HeaderComponent,
     FormComponent,
     PlayPageComponent
   ],
