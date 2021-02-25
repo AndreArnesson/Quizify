@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
 @Component({
     selector: 'app-form',
     template: `
-        <div class="col-md-6">
+        <div>
             <div>
                 <h3>Start a new quiz</h3>
             </div>
