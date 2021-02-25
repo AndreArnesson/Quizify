@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -9,7 +10,7 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
                 <h3>Start a new quiz</h3>
             </div>
             <div>
-                <form [formGroup]="form" novalidate>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
                     <h6><b>Genres</b></h6>
                     <app-checkbox-group [data]="genres"></app-checkbox-group>
                     <h6><b>Eras</b></h6>
@@ -59,13 +60,17 @@ export class FormComponent implements OnInit {
 
     submitted = false;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private router: Router) {
         this.form = this.fb.group({
             checkArray: this.fb.array([])
         });
     }
 
     ngOnInit(): void {
+    }
+
+    onSubmit(): void {
+        this.router.navigateByUrl('/play');
     }
 
 }

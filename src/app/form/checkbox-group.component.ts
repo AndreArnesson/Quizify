@@ -4,7 +4,7 @@ import {Component, OnInit, Input} from '@angular/core';
     selector: 'app-checkbox-group',
     template: `
         <div class="row">
-            <div class="col-4" *ngFor="let item of data; let i=index">
+            <div class="col-3" *ngFor="let item of data; let i=index">
                 <label>
                     <input type="checkbox" [value]="item.value"/>
                     {{item.name}}

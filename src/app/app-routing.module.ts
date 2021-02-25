@@ -6,11 +6,12 @@ import {AboutComponent} from './about/about.component';
 import {PlayPageComponent} from './play-page/play-page.component';
 
 const routes: Routes = [
-    {path: 'quiz', component: PlayPageComponent},
+    {path: 'quiz', component: FormComponent},
     {path: 'about', component: AboutComponent},
+    {path: 'play', component: PlayPageComponent},
     {path: '', component: FormComponent},
     {path: '**', component: PageNotFoundComponent},  // Wildcard route for a 404 page
-    
+
 ];
 
 @NgModule({
