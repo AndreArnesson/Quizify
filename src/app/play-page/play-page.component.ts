@@ -11,6 +11,7 @@ export class PlayPageComponent implements OnInit {
     title: "Highway to hell",
     artist: "Acdc",
   };
+  isDisabled = false;
 
   constructor() { }
 
@@ -23,7 +24,17 @@ export class PlayPageComponent implements OnInit {
       title: "Kinesiska muren",
       artist: "Evert Taube",
     }
-
-
+    this.isDisabled= false;
   }
+  correctAnswer(event: any) {
+    console.log(event);
+    this.isDisabled = true;
+  }
+  wrongAnswer(event: any) {
+    console.log(event)
+    this.isDisabled = true;
+  }
+
+
+
 }
