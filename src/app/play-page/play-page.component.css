@@ -1,0 +1,10 @@
+.title{
+    text-align: center;
+}
+
+.img-placement{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}

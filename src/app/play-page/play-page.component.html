@@ -1,2 +1,9 @@
-<h3>Playpage</h3>
-<p>This is a very nice component!</p>
+<div>
+    <h3 class="title">Playpage</h3>
+
+    <button class="btn btn-primary" (click)="newSong()">Load new song</button>
+
+    <img class="img-placement" #albumImg [src]="song.img">
+    <h3> {{song.title}}</h3>
+    <h4> {{song.artist}}</h4>
+</div>
