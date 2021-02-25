@@ -8,8 +8,9 @@ import {PlayPageComponent} from './play-page/play-page.component';
 const routes: Routes = [
     {path: 'quiz', component: PlayPageComponent},
     {path: 'about', component: AboutComponent},
-    {path: '', component: PlayPageComponent},
+    {path: '', component: FormComponent},
     {path: '**', component: PageNotFoundComponent},  // Wildcard route for a 404 page
+    
 ];
 
 @NgModule({
