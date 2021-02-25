@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
       '                <ul class="nav">\n' +
       '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/form">Quiz</a></li>\n' +
       '                    <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>\n' +
-      '                    <li class="navbar-item"><a class="nav-link text-white" href="/">About</a></li>\n' +
+      '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>\n' +
       '                </ul>\n' +
       '            </div>\n' +
       '        </nav>\n' +
