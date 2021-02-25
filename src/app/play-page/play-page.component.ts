@@ -19,7 +19,7 @@ export class PlayPageComponent implements OnInit {
 
   newSong() {
     this.song = {
-      img: "https://placeimg.com/300/300/animals",
+      img: "https://placeimg.com/300/300/any",
       title: "Kinesiska muren",
       artist: "Evert Taube",
     }

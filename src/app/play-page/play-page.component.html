@@ -1,9 +1,15 @@
 <div>
-    <h3 class="title">Playpage</h3>
+    <h3 class="title mx-auto">Playpage</h3>
+    <div class="container p-4">
+        <button class="btn btn-primary col-md-2 offset-md-5" (click)="newSong()">Load new song</button>
+    </div>
+    <div class="row">
+        <img class="offset-md-4 col-md-4 p-3" #albumImg [src]="song.img">
+    </div>
 
-    <button class="btn btn-primary" (click)="newSong()">Load new song</button>
+    <div class="text-center">
+        <h3> {{song.title}}</h3>
+        <h4> {{song.artist}}</h4>
+    </div>
 
-    <img class="img-placement" #albumImg [src]="song.img">
-    <h3> {{song.title}}</h3>
-    <h4> {{song.artist}}</h4>
 </div>
