@@ -11,7 +11,8 @@
         <h3> {{song.title}}</h3>
         <h4> {{song.artist}}</h4>
         <div class="row justify-content-center">
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-success col-2 p-2" (click)="correctAnswer($event)">I know this song!</button>
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-danger col-2 p-2" (click)="wrongAnswer($event)">I don't know this song :(</button>
+            <button [disabled]="isDisabled" class="rounded-pill btn btn-success p-2" (click)="correctAnswer($event)">I know this song!</button>
+            <button [disabled]="isDisabled" class="rounded-pill btn btn-danger p-2" (click)="wrongAnswer($event)">I don't know this song :(</button>
         </div>
     </div>
+</div>

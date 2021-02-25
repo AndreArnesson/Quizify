@@ -13,7 +13,7 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
                     <h6><b>Genres</b></h6>
                     <app-checkbox-group [data]="genres"></app-checkbox-group>
-                    <h6><b>Eras</b></h6>
+                    <h6><b>Decades</b></h6>
                     <app-checkbox-group [data]="decades"></app-checkbox-group>
                     <div class="form-group">
                         <h6><b>Difficulty</b></h6>
