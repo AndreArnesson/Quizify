@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
             <div class="container col-md-8.5">
               <a class="navbar-brand text-white">Music quiz place</a>
               <ul class="nav">
-                  <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">Quiz</a></li>
-                  <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>
-                  <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>
-                </ul>
+                <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">Quiz</a></li>
+                <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>
+                <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>
+              </ul>
             </div>
           </nav>
         </header>
