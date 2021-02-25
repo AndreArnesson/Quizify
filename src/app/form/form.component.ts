@@ -4,28 +4,21 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
 @Component({
     selector: 'app-form',
     template: `
-        <div>
+        <div class="col-md-6">
             <div>
                 <h3>Start a new quiz</h3>
             </div>
             <div>
                 <form [formGroup]="form" novalidate>
-                    <div class="form-group">
-                        <h6><b>Genre</b></h6>
-                        <input type="checkbox"/>
-                    </div>
+                    <h6><b>Genres</b></h6>
+                    <app-checkbox-group [data]="genres"></app-checkbox-group>
                     <h6><b>Eras</b></h6>
-                    <div class="row">
-                        <div class="col-3" *ngFor="let data of Data; let i=index">
-                            <label>
-                                <input type="checkbox" [value]="data.value" />
-                                {{data.name}}
-                            </label>
-                        </div>
-                    </div>
+                    <app-checkbox-group [data]="decades"></app-checkbox-group>
                     <div class="form-group">
                         <h6><b>Difficulty</b></h6>
-                        <select></select>
+                        <select>
+                            <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
+                        </select>
                     </div>
                     <input class="btn btn-primary col-md-12" type="submit" value="Start quiz"/>
                 </form>
@@ -34,7 +27,7 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
 })
 export class FormComponent implements OnInit {
 
-    Data: Array<any> = [
+    decades: Array<any> = [
         {name: '50s', value: 1950},
         {name: '60s', value: 1960},
         {name: '70s', value: 1970},
@@ -45,9 +38,24 @@ export class FormComponent implements OnInit {
         {name: 'Modern', value: 2020}
     ];
 
-    form: FormGroup;
+    genres: Array<any> = [
+        {name: 'Pop', value: 'pop'},
+        {name: 'Hip hop', value: 'hiphop'},
+        {name: 'Rap', value: 'rap'},
+        {name: 'Rock', value: 'rock'},
+        {name: 'Punk', value: 'punk'},
+        {name: 'Classical', value: 'classic'}
+    ];
 
-    genres = ['Pop', 'Hip Hop', 'Rap', 'Rock', 'Classical', 'Punk']; // should be fetched from Spotify API
+    difficulties: Array<any> = [
+        {name: 'Mainstream hits', value: 1},
+        {name: 'Radio mix', value: 2},
+        {name: 'Tame Impala', value: 3},
+        {name: 'Pretentious underground', value: 4},
+        {name: 'What?', value: 5},
+    ];
+
+    form: FormGroup;
 
     submitted = false;
 
@@ -56,26 +64,6 @@ export class FormComponent implements OnInit {
             checkArray: this.fb.array([])
         });
     }
-
-    /*onCheckboxChange(e) {
-        const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-
-        if (e.target.checked) {
-            checkArray.push(new FormControl(e.target.value));
-        } else {
-            let i: number = 0;
-            checkArray.controls.forEach((item: FormControl) => {
-                if (item.value == e.target.value) {
-                    checkArray.removeAt(i);
-                    return;
-                }
-                i++;
-            });
-        }
-    }
-
-    onSubmit() {
-    }*/
 
     ngOnInit(): void {
     }

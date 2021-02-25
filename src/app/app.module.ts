@@ -13,6 +13,7 @@ import {PlayPageComponent} from './play-page/play-page.component';
 import {FooterComponent} from './footer/footer.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {AboutComponent} from './about/about.component';
+import {CheckboxGroupComponent} from './form/checkbox-group.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {AboutComponent} from './about/about.component';
         PlayPageComponent,
         FooterComponent,
         PageNotFoundComponent,
-        AboutComponent
+        AboutComponent,
+        CheckboxGroupComponent
     ],
     imports: [
         BrowserModule,
