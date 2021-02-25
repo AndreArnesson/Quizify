@@ -15,11 +15,13 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
                         <input type="checkbox"/>
                     </div>
                     <h6><b>Eras</b></h6>
-                    <div *ngFor="let data of Data; let i=index">
-                        <label>
-                            <input type="checkbox" [value]="data.value" />
-                            {{data.name}}
-                        </label>
+                    <div class="row">
+                        <div class="col-3" *ngFor="let data of Data; let i=index">
+                            <label>
+                                <input type="checkbox" [value]="data.value" />
+                                {{data.name}}
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <h6><b>Difficulty</b></h6>
