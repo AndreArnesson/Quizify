@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-//IMPORTS
+// Project component imports
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { FormComponent } from './form/form.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,7 +17,6 @@ import { FooterComponent } from './footer/footer.component';
     MainComponent,
     FormComponent,
     HeaderComponent,
-    FormComponent,
     PlayPageComponent,
     FooterComponent
   ],
