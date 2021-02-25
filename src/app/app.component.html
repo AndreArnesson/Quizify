@@ -1,6 +1,13 @@
 <div>
     <app-header></app-header>
-    <app-main></app-main>
+    <div class="row col-md-8 mx-auto">
+        <div class="col-md-4">
+            <router-outlet></router-outlet> <!-- Component linked to in app-routing is displayed here -->
+        </div>
+        <div class="card col-md-4 offset-md-4">
+            Här kan man skriva grejer!
+        </div>
+    </div>
     <app-play-page></app-play-page>
     <app-footer></app-footer>
 </div>

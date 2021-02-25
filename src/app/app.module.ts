@@ -10,6 +10,7 @@ import { FormComponent } from './form/form.component';
 import { HeaderComponent } from './header/header.component';
 import { PlayPageComponent } from './play-page/play-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './footer/footer.component';
     FormComponent,
     HeaderComponent,
     PlayPageComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
