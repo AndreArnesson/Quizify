@@ -7,7 +7,8 @@ import {AboutComponent} from './about/about.component';
 const routes: Routes = [
     {path: 'form', component: FormComponent},
     {path: 'about', component: AboutComponent},
-    { path: '**', component: PageNotFoundComponent},  // Wildcard route for a 404 page
+    {path: '', component: FormComponent},
+    {path: '**', component: PageNotFoundComponent},  // Wildcard route for a 404 page
 ];
 
 @NgModule({
