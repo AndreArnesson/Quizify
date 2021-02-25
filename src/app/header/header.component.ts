@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
       '            <div class="container col-md-8.5">\n' +
       '                <a class="navbar-brand text-white">Music quiz place</a>\n' +
       '                <ul class="nav">\n' +
-      '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/form">Quiz</a></li>\n' +
+      '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">Quiz</a></li>\n' +
       '                    <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>\n' +
       '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>\n' +
       '                </ul>\n' +
