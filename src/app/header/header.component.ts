@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  template: '' +
-      '<div>\n' +
-      '    <header>\n' +
-      '        <nav class="navbar" style="background-color: black">\n' +
-      '            <div class="container col-md-8.5">\n' +
-      '                <a class="navbar-brand text-white">Music quiz place</a>\n' +
-      '                <ul class="nav">\n' +
-      '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">Quiz</a></li>\n' +
-      '                    <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>\n' +
-      '                    <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>\n' +
-      '                </ul>\n' +
-      '            </div>\n' +
-      '        </nav>\n' +
-      '    </header>\n' +
-      '</div>'
+  template: `
+      <div>
+        <header>
+          <nav class="navbar" style="background-color: black">
+            <div class="container col-md-8.5">
+              <a class="navbar-brand text-white">Music quiz place</a>
+              <ul class="nav">
+                  <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">Quiz</a></li>
+                  <li class="navbar-item"><a class="nav-link text-white" href="/">Boop</a></li>
+                  <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About</a></li>
+                </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      `
+
 })
 export class HeaderComponent implements OnInit {
 
