@@ -4,7 +4,7 @@
         <button class="btn btn-primary" (click)="newSong()">Load new song</button>
     </div>
     <div class="text-center">
-        <iframe src="https://open.spotify.com/embed/track/7neTqWwI4HTPQVsBBa57Qe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <iframe [src]="song.url" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
 
     <div class="text-center">

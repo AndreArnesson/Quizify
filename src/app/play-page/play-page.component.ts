@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser'
 
 @Component({
   selector: 'app-play-page',
@@ -6,22 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./play-page.component.css']
 })
 export class PlayPageComponent implements OnInit {
-  song = {
-    img: "https://placeimg.com/300/300/animals",
-    title: "Highway to hell",
-    artist: "Acdc",
-  };
+  
+
+  badUrl = "https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s";
+  goodUrl : any;
   isDisabled = false;
   formFilled = true;
+  song : any;
 
-  constructor() { }
+  constructor(private sanitizer:DomSanitizer) {
+    this.goodUrl = sanitizer.bypassSecurityTrustUrl(this.badUrl);
+   }
 
   ngOnInit(): void {
+    this.song = {
+      url : this.transform("https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s"),
+      title: "Highway to hell",
+      artist: "Acdc",
+    };
   }
 
   newSong() {
     this.song = {
-      img: "https://placeimg.com/300/300/any",
+      url: this.transform("https://open.spotify.com/embed/track/5muJuGZ6vKefxbVHc3y8y8"),
       title: "Kinesiska muren",
       artist: "Evert Taube",
     }
@@ -34,6 +42,9 @@ export class PlayPageComponent implements OnInit {
   wrongAnswer(event: any) {
     console.log(event)
     this.isDisabled = true;
+  }
+  transform(url : any){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 
