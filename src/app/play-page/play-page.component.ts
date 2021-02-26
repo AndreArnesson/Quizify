@@ -12,6 +12,7 @@ export class PlayPageComponent implements OnInit {
     artist: "Acdc",
   };
   isDisabled = false;
+  formFilled = true;
 
   constructor() { }
 

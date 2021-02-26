@@ -2,13 +2,6 @@
     text-align: center;
 }
 
-.img-placement{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-}
-
-.btn-space {
-    margin-right: 5px;
+.rounded-pill {
+    width: 150px;
 }

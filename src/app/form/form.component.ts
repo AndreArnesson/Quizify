@@ -12,9 +12,9 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
             <div>
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
                     <h6><b>Genres</b></h6>
-                    <app-checkbox-group [data]="genres"></app-checkbox-group>
-                    <h6><b>Eras</b></h6>
-                    <app-checkbox-group [data]="decades"></app-checkbox-group>
+                    <app-checkbox-group [data]="[genres, 'genres']"></app-checkbox-group>
+                    <h6><b>Decades</b></h6>
+                    <app-checkbox-group [data]="[decades, 'decades']"></app-checkbox-group>
                     <div class="form-group">
                         <h6><b>Difficulty</b></h6>
                         <select>
@@ -62,11 +62,22 @@ export class FormComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private router: Router) {
         this.form = this.fb.group({
-            checkArray: this.fb.array([])
+            genres: new FormArray([]),
+            decades: new FormArray([])
         });
+        this.addCheckboxes(this.genres, 'genres');
+        this.addCheckboxes(this.decades, 'decades');
     }
 
     ngOnInit(): void {
+    }
+
+    private formArray(str: string): FormArray {
+        return this.form.controls[str] as FormArray;
+    }
+
+    private addCheckboxes(data: Array<any>, str: string): void {
+        data.forEach(() => this.formArray(str).push(new FormControl(false)));
     }
 
     onSubmit(): void {
