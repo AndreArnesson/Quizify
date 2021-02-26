@@ -17,7 +17,7 @@ export class PlayPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.song = {
-      url : this.transform("https://open.spotify.com/embed/track/0GONea6G2XdnHWjNZd6zt3"),
+      url : this.transform("https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s"),
       title: "Highway to hell",
       artist: "Acdc",
     };
