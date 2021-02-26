@@ -28,6 +28,7 @@ export class ApiFetchService {
       + '&seed_tracks=' + seedTracks
       + '&target_popularity=' + popularity
       + '&limit=' + limit
+      + '&market=SE';
 
     let headers = {
       'Authorization': 'Bearer ' + token,

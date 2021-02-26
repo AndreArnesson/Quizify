@@ -8,20 +8,16 @@ import { DomSanitizer} from '@angular/platform-browser'
 })
 export class PlayPageComponent implements OnInit {
   
-
-  badUrl = "https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s";
-  goodUrl : any;
   isDisabled = false;
   formFilled = true;
   song : any;
 
   constructor(private sanitizer:DomSanitizer) {
-    this.goodUrl = sanitizer.bypassSecurityTrustUrl(this.badUrl);
    }
 
   ngOnInit(): void {
     this.song = {
-      url : this.transform("https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s"),
+      url : this.transform("https://open.spotify.com/embed/track/0GONea6G2XdnHWjNZd6zt3"),
       title: "Highway to hell",
       artist: "Acdc",
     };
