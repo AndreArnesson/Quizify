@@ -22,6 +22,7 @@ export class MainComponent implements OnInit {
     this.trackList = ['3PzsbWSQdLCKDLxn7YZfkM']
     let list = (await this.api.generateRecommendation(token.access_token, this.genreList, this.artistList, this.trackList, '99', '10'))
     list.tracks.forEach(track => {
+      console.log(track.id)
       console.log(track.name)
     })
   }
