@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiFetchService } from './services/api-fetch.service';
-import { RecResponse } from './models/RecResponse'
+import { ApiFetchService } from '../services/api-fetch.service';
+import { RecResponse } from '../models/RecResponse'
 
 @Component({
   selector: 'app-main',
