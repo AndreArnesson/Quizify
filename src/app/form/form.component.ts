@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { ApiFetchService } from '../services/api-fetch.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -59,22 +60,25 @@ export class FormComponent implements OnInit {
 
     genres: Array<any> = [
         {name: 'Pop', value: 'pop'},
-        {name: 'Hip hop', value: 'hiphop'},
+        {name: 'Hip hop', value: 'hip-hop'},
         {name: 'Rap', value: 'rap'},
         {name: 'Rock', value: 'rock'},
         {name: 'Punk', value: 'punk'},
-        {name: 'Classical', value: 'classic'}
+        {name: 'Metal', value: 'metal'},
+        {name: 'EDM', value: 'edm'},
+        {name: 'Reggae', value: 'reggae'},
+        {name: 'Country', value: 'country'},
+        {name: 'Jazz', value: 'jazz'},
+        {name: 'Classical', value: 'classical'}
     ];
 
     difficulties: Array<any> = [
-        {name: 'Mainstream hits (1)', value: 1},
-        {name: 'Radio mix (2)', value: 2},
-        {name: 'Tame Impala (3)', value: 3},
-        {name: 'Pretentious underground (4)', value: 4},
-        {name: 'What? (5)', value: 5},
+        {name: 'Mainstream hits (1)', value: 100},
+        {name: 'Radio mix (2)', value: 75},
+        {name: 'Tame Impala (3)', value: 50},
+        {name: 'Pretentious underground (4)', value: 30},
+        {name: 'What? (5)', value: 10},
     ];
-
-    submitted = false;
 
     constructor(private router: Router) {
     }
