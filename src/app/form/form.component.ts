@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-form',
@@ -10,16 +9,35 @@ import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angul
                 <h3>Start a new quiz</h3>
             </div>
             <div>
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+                <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit()" novalidate>
                     <h6><b>Genres</b></h6>
-                    <app-checkbox-group [data]="[genres, 'genres']"></app-checkbox-group>
+                    <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="row form-group">
+                        <div class="col-3" *ngFor="let item of genres; let i=index">
+                            <label>
+                                <input type="checkbox"
+                                       ngModel name="{{item.name}}" [value]="item.value"
+                                />
+                                {{item.name}}
+                            </label>
+                        </div>
+                    </div>
                     <h6><b>Decades</b></h6>
-                    <app-checkbox-group [data]="[decades, 'decades']"></app-checkbox-group>
+                    <div ngModelGroup="decades" class="row">
+                        <div class="col-3" *ngFor="let item of decades; let i=index">
+                            <label>
+                                <input type="checkbox"
+                                       ngModel name="{{item.name}}" [value]="item.value"
+                                />
+                                {{item.name}}
+                            </label>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <h6><b>Difficulty</b></h6>
-                        <select>
+                        <select ngModel name="difficulty" #difficulty="ngModel" required>
                             <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                         </select>
+                        <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a difficulty.</div>
                     </div>
                     <input class="btn btn-primary col-md-12" type="submit" value="Start quiz"/>
                 </form>
@@ -49,35 +67,23 @@ export class FormComponent implements OnInit {
     ];
 
     difficulties: Array<any> = [
-        {name: 'Mainstream hits', value: 1},
-        {name: 'Radio mix', value: 2},
-        {name: 'Tame Impala', value: 3},
-        {name: 'Pretentious underground', value: 4},
-        {name: 'What?', value: 5},
+        {name: 'Mainstream hits (1)', value: 1},
+        {name: 'Radio mix (2)', value: 2},
+        {name: 'Tame Impala (3)', value: 3},
+        {name: 'Pretentious underground (4)', value: 4},
+        {name: 'What? (5)', value: 5},
     ];
-
-    form: FormGroup;
 
     submitted = false;
 
-    constructor(private fb: FormBuilder, private router: Router) {
-        this.form = this.fb.group({
-            genres: new FormArray([]),
-            decades: new FormArray([])
-        });
-        this.addCheckboxes(this.genres, 'genres');
-        this.addCheckboxes(this.decades, 'decades');
+    constructor(private router: Router) {
     }
 
     ngOnInit(): void {
     }
 
-    private formArray(str: string): FormArray {
-        return this.form.controls[str] as FormArray;
-    }
-
-    private addCheckboxes(data: Array<any>, str: string): void {
-        data.forEach(() => this.formArray(str).push(new FormControl(false)));
+    onChange(form: any): void {
+       console.log(form.value);
     }
 
     onSubmit(): void {
