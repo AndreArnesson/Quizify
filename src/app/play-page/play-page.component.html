@@ -4,15 +4,20 @@
         <button class="btn btn-primary" (click)="newSong()">Load new song</button>
     </div>
     <div class="text-center">
-        <iframe [src]="song.url" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <iframe [src]="song.url" width="300" height="380" allowtransparency="true"
+                allow="encrypted-media"></iframe>
     </div>
 
     <div class="text-center">
         <h3> {{song.title}}</h3>
         <h4> {{song.artist}}</h4>
         <div class="row justify-content-center">
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-success p-2" (click)="correctAnswer($event)">I know this song!</button>
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-danger p-2" (click)="wrongAnswer($event)">I don't know this song :(</button>
+            <button [disabled]="isDisabled" class="rounded-pill btn btn-success p-2" (click)="correctAnswer($event)">I
+                know this song!
+            </button>
+            <button [disabled]="isDisabled" class="rounded-pill btn btn-danger p-2" (click)="wrongAnswer($event)">I
+                don't know this song :(
+            </button>
         </div>
     </div>
 </div>

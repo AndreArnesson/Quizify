@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-form',
@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
     }
 
     onChange(form: any): void {
-       console.log(form.value);
+        console.log(form.value);
     }
 
     onSubmit(): void {
