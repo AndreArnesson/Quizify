@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ApiFetchService } from '../services/api-fetch.service'
+import { ApiFetchService } from '../services/api-fetch.service';
+import { QuizService} from '../services/quiz.service';
 
 @Component({
     selector: 'app-play-page',
@@ -10,42 +11,48 @@ import { ApiFetchService } from '../services/api-fetch.service'
 export class PlayPageComponent implements OnInit {
 
     isDisabled = false;
-    formFilled = true;
+    formFilled = false;
     song: any;
-    private poplarity: number = 100
+    private popularity = 100;
+    private genreSeeds: any;
 
-    constructor(private sanitizer: DomSanitizer, private api: ApiFetchService) {
-    }
+    constructor(private sanitizer: DomSanitizer, private api: ApiFetchService, private quizService: QuizService) {}
 
     ngOnInit(): void {
         this.song = {
             url: this.transform('https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s'),
             title: 'Highway to hell',
-            artist: 'Acdc',
+            artist: 'Acdc'
         };
+
+        const quizParams = this.quizService.getQuizParameters();
+        if (quizParams) {
+            this.formFilled = true;
+            this.popularity = quizParams.difficulty;
+            this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
+        }
+
+        console.log(this.genreSeeds);
+
     }
 
     async generateTrack() {
-        let token: { access_token?: string } = await this.api.generateToken()
-        let genreList = ['rock']
-        let artistList = ['LHk2OgyTTyWaYVkm0PWgpQ', 'TNI7WdUPS0umd_cRIe6wtA', 'OF08d3N-RPWrnDNQsnEo_Q']
-        let trackList = ['3PzsbWSQdLCKDLxn7YZfkM']
-        let newTrack = await this.api.generateRecommendation(token.access_token, genreList, artistList, trackList, this.poplarity.toString(), '1')
+        const token: { access_token?: string } = await this.api.generateToken();
+        const genreList = this.genreSeeds;
+        const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
         newTrack.tracks.forEach(track => {
             this.song = {
                 url: this.transform('https://open.spotify.com/embed/track/' + track.id),
                 title: track.name,
                 artist: track.artists[0].name
-            }
-        })
-        this.poplarity = (this.poplarity - 10)
-        console.log(this.poplarity);
+            };
+        });
+        this.popularity = (this.popularity - 10);
+        console.log(this.popularity);
 
     }
 
-    generateNewParameters() {
-
-    }
+    // generateNewParameters(): void {}
 
     correctAnswer(event: any): void {
         console.log(event);
