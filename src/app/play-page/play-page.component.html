@@ -1,24 +1,27 @@
 <div *ngIf="formFilled; else elseBlock">
-    <h2 class="title">Playpage</h2>
-    <div class="container p-3 text-center">
-        <button class="btn btn-primary" (click)="newSong()">Load new song</button>
-    </div>
     <div class="text-center">
-        <iframe [src]="song.url" width="300" height="380" allowtransparency="true"
-                allow="encrypted-media"></iframe>
+        <div class=" headingText">CURRENTLY PLAYING</div>
+        <div class="songText"> {{song.title}}</div>
+        <div class="headingText">WITH</div>
+        <div class="songText"> {{song.artist}}</div>
+        <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media" frameborder="0"
+            display="none"></iframe>
+        <div class="container p-3 text-center">
+            <button class="btn btn-dark" (click)="generateTrack()">Next Track</button>
+        </div>
     </div>
 
     <div class="text-center">
-        <h3> {{song.title}}</h3>
-        <h4> {{song.artist}}</h4>
+        <!--
         <div class="row justify-content-center">
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-success p-2" (click)="correctAnswer($event)">I
+            <button [disabled]="isDisabled" class="input btn btn-success p-2" (click)="correctAnswer($event)">I
                 know this song!
             </button>
-            <button [disabled]="isDisabled" class="rounded-pill btn btn-danger p-2" (click)="wrongAnswer($event)">I
+            <button [disabled]="isDisabled" class="input-pill btn btn-danger p-2" (click)="wrongAnswer($event)">I
                 don't know this song :(
             </button>
         </div>
+        -->
     </div>
 </div>
 <ng-template #elseBlock>

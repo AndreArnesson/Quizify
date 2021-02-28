@@ -21,7 +21,7 @@ export class ApiFetchService {
     return this.http.post('https://accounts.spotify.com/api/token', body, { headers: headers }).toPromise()
   }
 
-  async generateRecommendation(token: any, seedGenres: string[], seedArtists: string[], seedTracks: string[], popularity: string, limit: string) {
+  async generateRecommendation(token: any, seedGenres: string[], seedArtists: string[], seedTracks: string[], popularity: string, limit: string = '1') {
     let url = 'https://api.spotify.com/v1/recommendations?'
       + '&seed_genres=' + seedGenres
       + 'seed_artists=' + seedArtists

@@ -2,6 +2,26 @@
     text-align: center;
 }
 
-.rounded-pill {
-    width: 150px;
+.headingText {
+    font-weight: 700;
+    font-size: 30px;
+    text-align: left;
+}
+
+.songText {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: left;
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+}
+
+
+.btn {
+    width: 120px;
+    height: 40px;
+    border-radius: 0px
 }

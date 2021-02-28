@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ApiFetchService } from '../services/api-fetch.service'
 
 @Component({
     selector: 'app-play-page',
@@ -11,8 +12,9 @@ export class PlayPageComponent implements OnInit {
     isDisabled = false;
     formFilled = true;
     song: any;
+    private poplarity: number = 100
 
-    constructor(private sanitizer: DomSanitizer) {
+    constructor(private sanitizer: DomSanitizer, private api: ApiFetchService) {
     }
 
     ngOnInit(): void {
@@ -23,13 +25,26 @@ export class PlayPageComponent implements OnInit {
         };
     }
 
-    newSong(): void {
-        this.song = {
-            url: this.transform('https://open.spotify.com/embed/track/5muJuGZ6vKefxbVHc3y8y8'),
-            title: 'Kinesiska muren',
-            artist: 'Evert Taube',
-        };
-        this.isDisabled = false;
+    async generateTrack() {
+        let token: { access_token?: string } = await this.api.generateToken()
+        let genreList = ['rock']
+        let artistList = ['LHk2OgyTTyWaYVkm0PWgpQ', 'TNI7WdUPS0umd_cRIe6wtA', 'OF08d3N-RPWrnDNQsnEo_Q']
+        let trackList = ['3PzsbWSQdLCKDLxn7YZfkM']
+        let newTrack = await this.api.generateRecommendation(token.access_token, genreList, artistList, trackList, this.poplarity.toString(), '1')
+        newTrack.tracks.forEach(track => {
+            this.song = {
+                url: this.transform('https://open.spotify.com/embed/track/' + track.id),
+                title: track.name,
+                artist: track.artists[0].name
+            }
+        })
+        this.poplarity = (this.poplarity - 10)
+        console.log(this.poplarity);
+
+    }
+
+    generateNewParameters() {
+
     }
 
     correctAnswer(event: any): void {

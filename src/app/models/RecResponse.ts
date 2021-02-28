@@ -5,7 +5,7 @@ export interface RecResponse {
 
 interface Track {
     album: object
-    artists: object
+    artists: Artist[]
     available_markets: object
     disc_number: number
     duration_ms: number
@@ -19,6 +19,15 @@ interface Track {
     popularity: number
     preview_url: object
     track_number: number
+    type: string
+    uri: string
+}
+
+interface Artist {
+    external_urls: object
+    href: string
+    id: string
+    name: string
     type: string
     uri: string
 }
