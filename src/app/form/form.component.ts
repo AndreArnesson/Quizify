@@ -62,7 +62,7 @@ export class FormComponent implements OnInit {
         {name: 'Pop', value: 'pop'},
         {name: 'Hip hop', value: 'hip-hop'},
         {name: 'Rap', value: 'rap'},
-        {name: 'Rock', value: 'rock'},
+        {name: 'Rock\'n\'roll', value: 'rock-n-roll'},
         {name: 'Punk', value: 'punk'},
         {name: 'Metal', value: 'metal'},
         {name: 'EDM', value: 'edm'},

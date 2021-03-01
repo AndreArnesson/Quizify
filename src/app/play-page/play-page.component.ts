@@ -50,7 +50,7 @@ export class PlayPageComponent implements OnInit {
                 artist: track.artists[0].name
             };
         });
-        this.popularity = (this.popularity - 10);
+        //this.popularity = (this.popularity - 10);
         console.log(this.popularity);
 
     }

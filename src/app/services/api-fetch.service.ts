@@ -24,7 +24,7 @@ export class ApiFetchService {
     async generateRecommendation(token: any, seedGenres: string[], popularity: string, limit: string = '1') {
         const url = 'https://api.spotify.com/v1/recommendations?'
             + '&seed_genres=' + seedGenres
-            + '&target_popularity=' + popularity
+            + '&min_popularity=' + popularity
             + '&limit=' + limit
             + '&market=SE';
 
