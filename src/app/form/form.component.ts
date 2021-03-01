@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
             <div>
                 <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)" novalidate>
                     <h6><b>Genres</b></h6>
-                    <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="row form-group">
-                        <div class="col-3" *ngFor="let item of genres; let i=index">
+                    <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="form-group">
+                        <div class="form-check-inline col-md-2" *ngFor="let item of genres; let i=index">
                             <label>
                                 <input type="checkbox"
                                        ngModel name="{{item.value}}" [value]="item.value"
@@ -24,7 +24,7 @@ import {Router} from '@angular/router';
                     </div>
                     <div class="form-group">
                         <h6><b>Difficulty*</b></h6>
-                        <select ngModel name="difficulty" #difficulty="ngModel" required>
+                        <select class="form-control" ngModel name="difficulty" #difficulty="ngModel" style="width:300px" required>
                             <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                         </select>
                         <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a difficulty.</div>
