@@ -22,9 +22,5 @@
 .btn {
     width: 120px;
     height: 40px;
-    border-radius: 0px
-}
-
-.text-center {
-    margin-top: 80px;
+    border-radius: 0;
 }

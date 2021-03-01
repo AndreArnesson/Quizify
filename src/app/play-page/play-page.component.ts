@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ApiFetchService } from '../services/api-fetch.service';
 import { QuizService} from '../services/quiz.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -16,7 +17,10 @@ export class PlayPageComponent implements OnInit {
     private popularity = 100;
     private genreSeeds: any;
 
-    constructor(private sanitizer: DomSanitizer, private api: ApiFetchService, private quizService: QuizService) {}
+    constructor(private sanitizer: DomSanitizer,
+                private api: ApiFetchService,
+                private quizService: QuizService,
+                private router: Router) {}
 
     ngOnInit(): void {
         this.song = {
@@ -30,10 +34,9 @@ export class PlayPageComponent implements OnInit {
             this.formFilled = true;
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
+        } else {
+            this.router.navigateByUrl('/quiz');
         }
-
-        console.log(this.genreSeeds);
-
     }
 
     async generateTrack() {
