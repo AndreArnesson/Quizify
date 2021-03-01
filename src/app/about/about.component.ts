@@ -4,11 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-about',
   template: `
     <div>
-      <h3>About</h3>
+        <div style="font-weight: 700; font-size: 30px;">
+            About
+        </div>
       <p>We do music quiz!</p>
     </div>
   `
-  
+
 
 })
 export class AboutComponent implements OnInit {

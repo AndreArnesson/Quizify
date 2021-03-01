@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import { QuizService } from '../services/quiz.service';
+import {QuizService} from '../services/quiz.service';
 import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-form',
     template: `
         <div>
-            <div>
-                <h3>Start a new quiz</h3>
+            <div style="font-weight: 700; font-size: 30px;">
+                Start a new quiz
             </div>
             <div>
                 <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)" novalidate>
@@ -24,10 +24,13 @@ import {Router} from '@angular/router';
                     </div>
                     <div class="form-group">
                         <h6><b>Difficulty*</b></h6>
-                        <select class="form-control" ngModel name="difficulty" #difficulty="ngModel" style="width:300px" required>
+                        <select class="form-control" ngModel name="difficulty" #difficulty="ngModel" style="width:300px"
+                                required>
                             <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                         </select>
-                        <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a difficulty.</div>
+                        <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a
+                            difficulty.
+                        </div>
                     </div>
                     <input class="btn btn-primary col-md-12" type="submit" value="Start quiz"/>
                 </form>

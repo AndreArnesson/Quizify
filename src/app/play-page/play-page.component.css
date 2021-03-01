@@ -5,13 +5,11 @@
 .headingText {
     font-weight: 700;
     font-size: 30px;
-    text-align: left;
 }
 
 .songText {
     font-weight: 700;
     font-size: 20px;
-    text-align: left;
     margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -20,7 +18,10 @@
 }
 
 .btn {
-    width: 120px;
-    height: 40px;
-    border-radius: 0;
+    width:60px;
+    height:50px;
+}
+
+.player {
+    margin-top:5px;
 }

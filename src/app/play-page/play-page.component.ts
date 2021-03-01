@@ -53,13 +53,11 @@ export class PlayPageComponent implements OnInit {
     // generateNewParameters(): void {}
 
     correctAnswer(event: any): void {
-        console.log(event);
-        this.isDisabled = true;
+        this.generateTrack();
     }
 
     wrongAnswer(event: any): void {
-        console.log(event);
-        this.isDisabled = true;
+        this.generateTrack();
     }
 
     transform(url: any): SafeResourceUrl {

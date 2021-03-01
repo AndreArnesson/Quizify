@@ -1,14 +1,28 @@
 <div>
-    <div class="songInfo text-center">
-        <div class="headingText">CURRENTLY PLAYING</div>
-        <div class="songText"> {{song.title}}</div>
-        <div class="headingText">WITH</div>
-        <div class="songText"> {{song.artist}}</div>
-    </div>
-    <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media" frameborder="0"
-        display="none"></iframe>
-    <div class="container text-center">
-        <button class="btn btn-dark" (click)="generateTrack()">Next Track</button>
+    <div class="row">
+        <div class="card text-center">
+            <div>
+                <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media" frameborder="0"
+                         class="justify-content-center player">
+                </iframe>
+            </div>
+
+            <div>
+                <button class="rounded-pill btn btn-success p-2" (click)="correctAnswer($event)">
+                    Yes!
+                </button>
+                <button class="rounded-pill btn btn-danger p-2" (click)="wrongAnswer($event)">
+                    No.
+                </button>
+            </div>
+        </div>
+
+        <div class="songInfo">
+            <div class="headingText">CURRENTLY PLAYING</div>
+            <div class="songText"> {{song.title}}</div>
+            <div class="headingText">WITH</div>
+            <div class="songText"> {{song.artist}}</div>
+        </div>
     </div>
 </div>
 <ng-template #elseBlock>
