@@ -73,11 +73,10 @@ export class FormComponent implements OnInit {
     ];
 
     difficulties: Array<any> = [
-        {name: 'Mainstream hits (100)', value: 90},
-        {name: 'Radio mix (75)', value: 70},
-        {name: 'Tame Impala (50)', value: 50},
+        {name: 'Mainstream hits (80)', value: 80},
+        {name: 'Radio mix (60)', value: 60},
         {name: 'Pretentious underground (30)', value: 30},
-        {name: 'What? (10)', value: 10},
+        {name: 'What? (0)', value: 0}
     ];
 
     constructor(private router: Router, private quizService: QuizService) {
