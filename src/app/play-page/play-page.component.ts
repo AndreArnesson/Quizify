@@ -23,17 +23,12 @@ export class PlayPageComponent implements OnInit {
                 private router: Router) {}
 
     ngOnInit(): void {
-        this.song = {
-            url: this.transform('https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s'),
-            title: 'Highway to hell',
-            artist: 'Acdc'
-        };
-
         const quizParams = this.quizService.getQuizParameters();
         if (quizParams) {
             this.formFilled = true;
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
+            this.generateTrack();
         } else {
             this.router.navigateByUrl('/quiz');
         }

@@ -22,17 +22,6 @@ import {Router} from '@angular/router';
                             </label>
                         </div>
                     </div>
-                    <h6><b>Decades</b></h6>
-                    <div ngModelGroup="decades" class="row">
-                        <div class="col-3" *ngFor="let item of decades; let i=index">
-                            <label>
-                                <input type="checkbox"
-                                       ngModel name="{{item.value}}" [value]="item.value"
-                                />
-                                {{item.name}}
-                            </label>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <h6><b>Difficulty*</b></h6>
                         <select ngModel name="difficulty" #difficulty="ngModel" required>
@@ -46,18 +35,6 @@ import {Router} from '@angular/router';
         </div>`
 })
 export class FormComponent implements OnInit {
-
-    decades: Array<any> = [
-        {name: '50s', value: 1950},
-        {name: '60s', value: 1960},
-        {name: '70s', value: 1970},
-        {name: '80s', value: 1980},
-        {name: '90s', value: 1990},
-        {name: '2000s', value: 2000},
-        {name: '2010s', value: 2010},
-        {name: 'Modern', value: 2020}
-    ];
-
     genres: Array<any> = [
         {name: 'Pop', value: 'pop'},
         {name: 'Hip hop', value: 'hip-hop'},
