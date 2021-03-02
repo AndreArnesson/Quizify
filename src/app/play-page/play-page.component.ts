@@ -28,15 +28,22 @@ export class PlayPageComponent implements OnInit {
             this.formFilled = true;
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
-            this.generateTrack();
+            const temp = 0;
+            this.generateTrack(temp);
         } else {
             this.router.navigateByUrl('/quiz');
         }
     }
 
-    async generateTrack() {
+    async generateTrack(popular: number) {
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
+            if(typeof this.popularity == 'string'){
+                let temp = parseInt(this.popularity);
+                this.popularity = temp+popular;
+            }else{
+                this.popularity = popular + this.popularity;
+            }
         const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
         newTrack.tracks.forEach(track => {
             this.song = {
@@ -50,17 +57,19 @@ export class PlayPageComponent implements OnInit {
 
     }
 
-    // generateNewParameters(): void {}
+    //generateNewParameters(): void {}
 
     correctAnswer(event: any): void {
-        this.generateTrack();
+        this.generateTrack(-10);
+        
     }
 
     wrongAnswer(event: any): void {
-        this.generateTrack();
+        this.generateTrack(10);
     }
 
     transform(url: any): SafeResourceUrl {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
+
 }
