@@ -65,9 +65,7 @@ export class FormComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onChange(form: any): void {
-        console.log(form.value);
-    }
+    onChange(form: any): void {}
 
     onSubmit(form: any): void {
         if (form.valid) {
