@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./play-page.component.css']
 })
 export class PlayPageComponent implements OnInit {
-
+    isShow = false;
     isDisabled = false;
     formFilled = false;
     song: any;
@@ -70,6 +70,10 @@ export class PlayPageComponent implements OnInit {
 
     transform(url: any): SafeResourceUrl {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+
+    hideAnswer(event: any): void {
+        this.isShow = !this.isShow;
     }
 
 }

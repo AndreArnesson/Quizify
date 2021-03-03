@@ -14,10 +14,13 @@
                 <button class="btn btn-danger" (click)="wrongAnswer($event)">
                     No.
                 </button>
+                <button class="btn btn-primary" (click)="hideAnswer($event)">
+                    Hide Answer.
+                </button>
             </div>
         </div>
 
-        <div class="songInfo">
+        <div class="songInfo" *ngIf ="!isShow">
             <div class="headingText">CURRENTLY PLAYING</div>
             <div class="songText"> {{song.title}}</div>
             <div class="headingText">WITH</div>
