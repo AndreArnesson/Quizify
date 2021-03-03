@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ApiFetchService } from '../services/api-fetch.service';
-import { QuizService} from '../services/quiz.service';
-import {Router} from '@angular/router';
+import { QuizService } from '../services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -18,9 +18,9 @@ export class PlayPageComponent implements OnInit {
     private genreSeeds: any;
 
     constructor(private sanitizer: DomSanitizer,
-                private api: ApiFetchService,
-                private quizService: QuizService,
-                private router: Router) {}
+        private api: ApiFetchService,
+        private quizService: QuizService,
+        private router: Router) { }
 
     ngOnInit(): void {
         const quizParams = this.quizService.getQuizParameters();
@@ -38,12 +38,12 @@ export class PlayPageComponent implements OnInit {
     async generateTrack(popular: number) {
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
-            if(typeof this.popularity == 'string'){
-                let temp = parseInt(this.popularity);
-                this.popularity = temp+popular;
-            }else{
-                this.popularity = popular + this.popularity;
-            }
+        if (typeof this.popularity == 'string') {
+            let temp = parseInt(this.popularity);
+            this.popularity = temp + popular;
+        } else {
+            this.popularity = popular + this.popularity;
+        }
         const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
         newTrack.tracks.forEach(track => {
             this.song = {
@@ -52,16 +52,12 @@ export class PlayPageComponent implements OnInit {
                 artist: track.artists[0].name
             };
         });
-        //this.popularity = (this.popularity - 10);
         console.log(this.popularity);
 
     }
 
-    //generateNewParameters(): void {}
-
     correctAnswer(event: any): void {
         this.generateTrack(-10);
-        
     }
 
     wrongAnswer(event: any): void {
