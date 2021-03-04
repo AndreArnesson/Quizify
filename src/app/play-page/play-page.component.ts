@@ -68,7 +68,7 @@ export class PlayPageComponent implements OnInit {
     }
 
     checkAnswer(answer: any): boolean {
-        const song = this.song.title.toLowerCase().split("-")[0].trim();
+        const song = this.song.title.toLowerCase().split('-')[0].trim();
         return answer.toLowerCase() === song;
 
     }
