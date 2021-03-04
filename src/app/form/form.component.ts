@@ -33,6 +33,7 @@ export class FormComponent implements OnInit {
     checkedNumber: number = 0;
     checkedLimit: number = 5;
     isDisabled: boolean = false;
+    enoughBoxesTicked: boolean = false;
 
     constructor(private router: Router, private quizService: QuizService) {
     }
@@ -40,7 +41,15 @@ export class FormComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onChange(form: any): void { }
+    onChange(form: any): void {
+        let counter = 0;
+        for (const [key, value] of Object.entries(form.value.genres)) {
+            if ((value === true)) {
+                counter++;
+            }
+        }
+        this.enoughBoxesTicked = counter > 0 && counter < 6 ? true : false;
+    }
 
     onSubmit(form: any): void {
         //if (form.valid) {
