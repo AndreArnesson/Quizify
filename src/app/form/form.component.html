@@ -31,36 +31,3 @@
         </form>
     </div>
 </div>
-
-<!--
-<div>
-    <div style="font-weight: 700; font-size: 30px;">
-        Start a new quiz
-    </div>
-    <div>
-        <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)" novalidate>
-            <h6><b>Genres</b></h6>
-            <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="form-group">
-                <div class="form-check-inline col-md-2" *ngFor="let item of genres; let i=index">
-                    <label>
-                        <input type="checkbox" ngModel name="{{item.value}}" [value]="item.value" />
-                        {{item.name}}
-                    </label>
-                </div>
-                <small *ngIf="!enoughBoxesTicked && genresGroup.touched; " class="text-danger">Choose between 1-5
-                    genres</small>
-            </div>
-            <div class="form-group">
-                <h6><b>Difficulty*</b></h6>
-                <select class="form-control" ngModel name="difficulty" #difficulty="ngModel" style="width:300px"
-                    required>
-                    <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
-                </select>
-                <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a
-                    difficulty.
-                </div>
-            </div>
-            <input class="btn btn-primary col-md-12" type="submit" value="Start quiz" />
-        </form>
-    </div>
-</div>` -->

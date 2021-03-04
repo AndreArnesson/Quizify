@@ -1,32 +1,42 @@
 <div>
     <div class="row mx-auto">
-            <div class="card text-center col-md-2 offset-md-2">
-                <div>
-                    <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media" frameborder="0"
-                            class="justify-content-center player">
-                    </iframe>
-                </div>
-
-                <div>
-                    <button class="quiz-btn btn" (click)="correctAnswer($event)">
-                        Yes!
-                    </button>
-                    <button class="quiz-btn btn" (click)="wrongAnswer($event)">
-                        No.
-                    </button>
-                </div>
+        <div class="card text-center col-md-2 offset-md-2">
+            <div>
+                <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media"
+                    frameborder="0" class="justify-content-center player">
+                </iframe>
             </div>
 
-            <div class="songInfo card col-md-5" *ngIf ="!isShow">
-                <div class="headingText">PLAYING</div>
-                <div class="songText"> {{song.title}}</div>
-                <div class="headingText">WITH</div>
-                <div class="songText"> {{song.artist}}</div>
+            <div>
+                <button class="quiz-btn btn" (click)="correctAnswer($event)">
+                    Yes!
+                </button>
+                <button class="quiz-btn btn" (click)="wrongAnswer($event)">
+                    No.
+                </button>
             </div>
-            <button class="btn col-md-1" (click)="hideAnswer($event)">
-                {{hideBtnText}}
-            </button>
+        </div>
 
+        <div class="songInfo card col-md-5" *ngIf="!isShow">
+            <div class="headingText">PLAYING</div>
+            <div class="songText"> {{song.title}}</div>
+            <div class="headingText">WITH</div>
+            <div class="songText"> {{song.artist}}</div>
+        </div>
+        <button class="btn col-md-1" (click)="hideAnswer($event)">
+            {{hideBtnText}}
+        </button>
+    </div>
 
+    <h6 class="p-2 col-md-3">Vilken låt spelas?</h6>
+    <div class="row">
+        <input type="text" #box />
+        <button class="btn btn-dark" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
+    </div>
+    <div class="row">
+        <h1 class="text-success" *ngIf="checkAnswer(box.value); else elseBlock">Rätt svar</h1>
+        <ng-template #elseBlock>
+            <h1 class="text-danger">Fel svar</h1>
+        </ng-template>
     </div>
 </div>

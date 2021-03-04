@@ -78,4 +78,14 @@ export class PlayPageComponent implements OnInit {
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
+    checkAnswer(answer: any) {
+        let song = this.song.title.toLowerCase().split("-")[0].trim();
+
+        if (answer.toLowerCase() === song) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
