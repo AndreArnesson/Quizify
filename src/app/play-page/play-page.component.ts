@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ApiFetchService } from '../services/api-fetch.service';
-import { QuizService } from '../services/quiz.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {ApiFetchService} from '../services/api-fetch.service';
+import {QuizService} from '../services/quiz.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -11,25 +11,23 @@ import { Router } from '@angular/router';
 })
 export class PlayPageComponent implements OnInit {
     isShow = false;
-    isDisabled = false;
-    formFilled = false;
     song: any;
+    hideBtnText = 'Hide answer';
     private popularity = 100;
     private genreSeeds: any;
 
     constructor(private sanitizer: DomSanitizer,
-        private api: ApiFetchService,
-        private quizService: QuizService,
-        private router: Router) { }
+                private api: ApiFetchService,
+                private quizService: QuizService,
+                private router: Router) {
+    }
 
     ngOnInit(): void {
         const quizParams = this.quizService.getQuizParameters();
         if (quizParams) {
-            this.formFilled = true;
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
-            const temp = 0;
-            this.generateTrack(temp);
+            this.generateTrack(0);
         } else {
             this.router.navigateByUrl('/quiz');
         }
@@ -38,12 +36,7 @@ export class PlayPageComponent implements OnInit {
     async generateTrack(popular: number) {
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
-        if (typeof this.popularity == 'string') {
-            let temp = parseInt(this.popularity);
-            this.popularity = temp + popular;
-        } else {
-            this.popularity = popular + this.popularity;
-        }
+        this.popularity = +this.popularity + popular;
         const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
         newTrack.tracks.forEach(track => {
             this.song = {
@@ -70,6 +63,7 @@ export class PlayPageComponent implements OnInit {
 
     hideAnswer(event: any): void {
         this.isShow = !this.isShow;
+        this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
 }

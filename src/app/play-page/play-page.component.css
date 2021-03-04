@@ -1,6 +1,4 @@
-.title {
-    text-align: center;
-}
+
 
 .headingText {
     font-weight: 700;
@@ -14,25 +12,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 350px;
+    max-width: 500px;
 }
 
-.btn {
-    background-color: #1db954;
-    width: 100px;
-    height: 40px;
-    font-weight: 400;
-    font-size: 18px;
-    margin: 6px;
-    border-radius: 30px;
+.quiz-btn {
+    width:65px;
+    height:50px;
 }
 
-.track-player {
-    display: block;
-    margin: 0 auto;
-}
-
-.songInfo {
-    position: absolute;
-    transform: translateX(100px), translateY(100px);
+.player {
+    margin-top:5px;
 }
