@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {ApiFetchService} from '../services/api-fetch.service';
-import {QuizService} from '../services/quiz.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ApiFetchService } from '../services/api-fetch.service';
+import { QuizService } from '../services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -15,11 +15,14 @@ export class PlayPageComponent implements OnInit {
     hideBtnText = 'Hide answer';
     private popularity = 100;
     private genreSeeds: any;
+    correct = 0;
+    wrong = 0;
+    streak = 0;
 
     constructor(private sanitizer: DomSanitizer,
-                private api: ApiFetchService,
-                private quizService: QuizService,
-                private router: Router) {
+        private api: ApiFetchService,
+        private quizService: QuizService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -37,14 +40,23 @@ export class PlayPageComponent implements OnInit {
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
-        const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
-        newTrack.tracks.forEach(track => {
-            this.song = {
-                url: this.transform('https://open.spotify.com/embed/track/' + track.id),
-                title: track.name,
-                artist: track.artists[0].name
-            };
-        });
+        try {
+            const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
+            newTrack.tracks.forEach(track => {
+                this.song = {
+                    url: this.transform('https://open.spotify.com/embed/track/' + track.id),
+                    title: track.name,
+                    artist: track.artists[0].name
+                };
+            });
+        } catch { console.log("ajajaj") }
+        //this.generateTrack(-10)
+
+        console.log(this.song.title + "testeR");
+
+        console.log("teste");
+
+        console.log(this.song.artist);
         console.log(this.popularity);
 
     }

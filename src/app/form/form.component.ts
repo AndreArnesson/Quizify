@@ -52,8 +52,7 @@ export class FormComponent implements OnInit {
     }
 
     onSubmit(form: any): void {
-        //if (form.valid) {
-        if (true) {
+        if (form.valid) {
             const quizParams = form.value;
             this.quizService.setQuizParameters(quizParams);
             this.router.navigateByUrl('/play');
