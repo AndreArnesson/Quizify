@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {ApiFetchService} from '../services/api-fetch.service';
-import {QuizService} from '../services/quiz.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ApiFetchService } from '../services/api-fetch.service';
+import { QuizService } from '../services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -18,13 +18,15 @@ export class PlayPageComponent implements OnInit {
     correct = 0;
     wrong = 0;
     streak = 0;
-    playerAnswer : string = "";
+    playerAnswer: string = "";
     playerStreak = 0;
+    playMultiplayer = true;
+    playModeButtonText = "Play solo"
 
     constructor(private sanitizer: DomSanitizer,
-                private api: ApiFetchService,
-                private quizService: QuizService,
-                private router: Router) {
+        private api: ApiFetchService,
+        private quizService: QuizService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -70,19 +72,28 @@ export class PlayPageComponent implements OnInit {
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
-    checkAnswer(answer: any){
+    checkAnswer(answer: any) {
+        const song = this.song.title.toLowerCase().split('-')[0].split("(")[0].trim();
         
-        const song = this.song.title.toLowerCase().split('-')[0].trim();
-        if(answer.toLowerCase() === song){
+        if (answer.toLowerCase() === song) {
             this.playerAnswer = "rätt svar"
             this.playerStreak++;
-        }else{
+            setTimeout(()=> {this.correctAnswer()},2000)
+        } else {
             this.playerAnswer = "fel svar"
-            this.playerStreak =0;
-        }
-        
-        
+            this.playerStreak = 0;
+            this.isShow= false;
+            setTimeout(()=> {this.isShow=true},1900)
+            setTimeout(()=> {this.wrongAnswer()},2000) 
 
+        }
     }
+
+    togglePlayMode() {
+        this.playMultiplayer = !this.playMultiplayer;
+        this.playMultiplayer ? this.isShow=false : this.isShow=true;
+        this.playMultiplayer ? this.playModeButtonText = "Play solo" : this.playModeButtonText = 'Play "multiplayer"'
+    }
+
 
 }

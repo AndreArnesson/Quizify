@@ -3,7 +3,7 @@
         <div class="card text-center col-md-2 offset-md-2">
             <div>
                 <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media"
-                        frameborder="0" class="justify-content-center player">
+                    frameborder="0" class="justify-content-center player">
                 </iframe>
             </div>
 
@@ -27,10 +27,14 @@
             {{hideBtnText}}
         </button>
     </div>
-    <div class="row mx-auto">
+    <div>
+        <button class="btn"(click)="togglePlayMode()">{{playModeButtonText}}</button>
+    </div>
+    <div [hidden]="playMultiplayer" class="row mx-auto">
         <div class="col-md-12 text-center">
-            <label><h6>Vilken låt spelas?</h6>
-                <input id="1" type="text" #box onfocus="this.value=''"/>
+            <label>
+                <h6>Vilken låt spelas?</h6>
+                <input id="1" type="text" #box onfocus="this.value=''" />
             </label>
             <button class="btn" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
             <h1 *ngIf="playerAnswer=='rätt svar'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
@@ -39,8 +43,8 @@
             </ng-template>
             <h6>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</h6>
 
-        
-            
+
+
         </div>
     </div>
 
