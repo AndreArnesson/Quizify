@@ -18,6 +18,13 @@
 .quiz-btn {
     width:65px;
     height:50px;
+    border-radius: 20px;
+    margin:1px;
+}
+
+.btn {
+    background-color: #1DB954;
+    color: white;
 }
 
 .player {

@@ -8,10 +8,10 @@
                 </div>
 
                 <div>
-                    <button class="quiz-btn btn btn-success" (click)="correctAnswer($event)">
+                    <button class="quiz-btn btn" (click)="correctAnswer($event)">
                         Yes!
                     </button>
-                    <button class="quiz-btn btn btn-danger" (click)="wrongAnswer($event)">
+                    <button class="quiz-btn btn" (click)="wrongAnswer($event)">
                         No.
                     </button>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="headingText">WITH</div>
                 <div class="songText"> {{song.artist}}</div>
             </div>
-            <button class="btn btn-primary col-md-1" (click)="hideAnswer($event)">
+            <button class="btn col-md-1" (click)="hideAnswer($event)">
                 {{hideBtnText}}
             </button>
 
