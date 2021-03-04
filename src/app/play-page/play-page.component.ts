@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ApiFetchService } from '../services/api-fetch.service';
-import { QuizService } from '../services/quiz.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {ApiFetchService} from '../services/api-fetch.service';
+import {QuizService} from '../services/quiz.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-play-page',
@@ -20,9 +20,9 @@ export class PlayPageComponent implements OnInit {
     streak = 0;
 
     constructor(private sanitizer: DomSanitizer,
-        private api: ApiFetchService,
-        private quizService: QuizService,
-        private router: Router) {
+                private api: ApiFetchService,
+                private quizService: QuizService,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -40,52 +40,37 @@ export class PlayPageComponent implements OnInit {
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
-        try {
-            const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
-            newTrack.tracks.forEach(track => {
-                this.song = {
-                    url: this.transform('https://open.spotify.com/embed/track/' + track.id),
-                    title: track.name,
-                    artist: track.artists[0].name
-                };
-            });
-        } catch { console.log("ajajaj") }
-        //this.generateTrack(-10)
-
-        console.log(this.song.title + "testeR");
-
-        console.log("teste");
-
-        console.log(this.song.artist);
-        console.log(this.popularity);
-
+        const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
+        newTrack.tracks.forEach(track => {
+            this.song = {
+                url: this.transform('https://open.spotify.com/embed/track/' + track.id),
+                title: track.name,
+                artist: track.artists[0].name
+            };
+        });
     }
 
-    correctAnswer(event: any): void {
-        this.generateTrack(-10);
+    correctAnswer(): void {
+        this.generateTrack(-3);
     }
 
-    wrongAnswer(event: any): void {
-        this.generateTrack(10);
+    wrongAnswer(): void {
+        this.generateTrack(3);
     }
 
     transform(url: any): SafeResourceUrl {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
-    hideAnswer(event: any): void {
+    hideAnswer(): void {
         this.isShow = !this.isShow;
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
-    checkAnswer(answer: any) {
-        let song = this.song.title.toLowerCase().split("-")[0].trim();
+    checkAnswer(answer: any): boolean {
+        const song = this.song.title.toLowerCase().split("-")[0].trim();
+        return answer.toLowerCase() === song;
 
-        if (answer.toLowerCase() === song) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }
