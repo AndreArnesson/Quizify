@@ -18,6 +18,8 @@ export class PlayPageComponent implements OnInit {
     correct = 0;
     wrong = 0;
     streak = 0;
+    playerAnswer : string = "";
+    playerStreak = 0;
 
     constructor(private sanitizer: DomSanitizer,
                 private api: ApiFetchService,
@@ -37,6 +39,7 @@ export class PlayPageComponent implements OnInit {
     }
 
     async generateTrack(popular: number) {
+        this.playerAnswer = "";
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
@@ -67,9 +70,18 @@ export class PlayPageComponent implements OnInit {
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
-    checkAnswer(answer: any): boolean {
+    checkAnswer(answer: any){
+        
         const song = this.song.title.toLowerCase().split('-')[0].trim();
-        return answer.toLowerCase() === song;
+        if(answer.toLowerCase() === song){
+            this.playerAnswer = "rätt svar"
+            this.playerStreak++;
+        }else{
+            this.playerAnswer = "fel svar"
+            this.playerStreak =0;
+        }
+        
+        
 
     }
 

@@ -30,13 +30,17 @@
     <div class="row mx-auto">
         <div class="col-md-12 text-center">
             <label><h6>Vilken låt spelas?</h6>
-                <input type="text" #box/>
+                <input id="1" type="text" #box onfocus="this.value=''"/>
             </label>
             <button class="btn" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
-            <h1 class="text-success" *ngIf="checkAnswer(box.value); else elseBlock">Rätt svar</h1>
+            <h1 *ngIf="playerAnswer=='rätt svar'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
             <ng-template #elseBlock>
-                <h1 class="text-danger">Fel svar</h1>
+                <h1 class="text-danger">{{playerAnswer}}</h1>
             </ng-template>
+            <h6>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</h6>
+
+        
+            
         </div>
     </div>
 
