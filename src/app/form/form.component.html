@@ -26,8 +26,19 @@
                     difficulty.
                 </div>
             </div>
+            <h6><b>Add players</b></h6>
+            <input type="text" onfocus="this.value=''" #player>
+            <Button class="btn btn-info" type="button" (click)="addPlayer(player.value)">Add</Button>
+
             <input class="btn col-md-12" type="submit" value="Start quiz"
                 [disabled]="!difficulty.valid || !enoughBoxesTicked" />
         </form>
+    </div>
+    <div class="m-5" *ngIf="players.length>0">
+        <h4><b>Players</b></h4>
+        <div *ngFor="let player of players">
+            <h5>{{player.name}}</h5>
+        </div>
+
     </div>
 </div>

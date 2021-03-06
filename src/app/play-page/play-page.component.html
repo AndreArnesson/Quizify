@@ -42,10 +42,15 @@
                 <h1 class="text-danger">{{playerAnswer}}</h1>
             </ng-template>
             <h6>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</h6>
-
-
-
         </div>
+    </div>
+    <div [hidden]="!playMultiplayer" >
+        <div class="row mx-auto" *ngFor="let player of players; let i=index">
+            <h5 class="p-1"> {{player.name}} - {{player.points}} Points</h5> 
+            <button (click)="addPoint(i)" class="btn btn-circle">+</button>
+            <button (click)="removePoint(i)" class="btn btn-circle">-</button>
+        </div>
+
     </div>
 
 </div>

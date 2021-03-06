@@ -34,11 +34,13 @@ export class FormComponent implements OnInit {
     checkedLimit: number = 5;
     isDisabled: boolean = false;
     enoughBoxesTicked: boolean = false;
+    players: any = [{}];
 
     constructor(private router: Router, private quizService: QuizService) {
     }
 
     ngOnInit(): void {
+        this.players = this.players.filter((value: {}) => Object.keys(value).length !== 0); //fattar inte varför jag ska behöva göra så här
     }
 
     onChange(form: any): void {
@@ -54,7 +56,7 @@ export class FormComponent implements OnInit {
     onSubmit(form: any): void {
         if (form.valid) {
             const quizParams = form.value;
-            this.quizService.setQuizParameters(quizParams);
+            this.quizService.setQuizParameters(quizParams, this.players);
             this.router.navigateByUrl('/play');
         } else {
             alert('Choose difficulty');
@@ -70,6 +72,12 @@ export class FormComponent implements OnInit {
             }
         } else {
             this.checkedNumber -= 1;
+        }
+    }
+
+    addPlayer(value: any) {
+        if (value != "") {
+            this.players.push({ name: value, points: 0 })
         }
     }
 }

@@ -22,6 +22,7 @@ export class PlayPageComponent implements OnInit {
     playerStreak = 0;
     playMultiplayer = true;
     playModeButtonText = "Play solo"
+    players : any;
 
     constructor(private sanitizer: DomSanitizer,
         private api: ApiFetchService,
@@ -31,6 +32,7 @@ export class PlayPageComponent implements OnInit {
 
     ngOnInit(): void {
         const quizParams = this.quizService.getQuizParameters();
+        this.players = this.quizService.getPlayers();
         if (quizParams) {
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
@@ -41,6 +43,7 @@ export class PlayPageComponent implements OnInit {
     }
 
     async generateTrack(popular: number) {
+        console.log(this.players);
         this.playerAnswer = "";
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
@@ -95,5 +98,30 @@ export class PlayPageComponent implements OnInit {
         this.playMultiplayer ? this.playModeButtonText = "Play solo" : this.playModeButtonText = 'Play "multiplayer"'
     }
 
+    addPoint(index : any){
+        this.players[index].points++;
+    }
+
+    removePoint(index : any){
+
+        if(this.players[index].points>0){
+            this.players[index].points--;
+        }
+    
+
+    }
+/* 
+    checkLeader(){
+        let leader = {name: "", points: 0};
+        for(let i=0; i < this.players.length; i++){
+            let player = this.players[i];
+            if(player.points>leader.points){
+                leader=player;
+            }
+
+        }
+        return leader;
+    }
+ */
 
 }
