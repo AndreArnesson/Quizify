@@ -10,17 +10,16 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
     genres: Array<any> = [
-        { name: 'Pop', value: 'pop' },
-        { name: 'Hip hop', value: 'hip-hop' },
-        { name: 'Rap', value: 'rap' },
-        { name: 'Rock\'n\'roll', value: 'rock-n-roll' },
-        { name: 'Punk', value: 'punk' },
-        { name: 'Metal', value: 'metal' },
+        { name: 'POP', value: 'pop' },
+        { name: 'HIP HOP', value: 'hip-hop' },
+        { name: 'RAP', value: 'rap' },
+        { name: 'ROCK\'N\'ROLL', value: 'rock-n-roll' },
+        { name: 'PUNK', value: 'punk' },
+        { name: 'METAL', value: 'metal' },
         { name: 'EDM', value: 'edm' },
-        { name: 'Reggae', value: 'reggae' },
-        { name: 'Country', value: 'country' },
-        { name: 'Jazz', value: 'jazz' },
-        { name: 'Classical', value: 'classical' }
+        { name: 'COUNTRY', value: 'country' },
+        { name: 'JAZZ', value: 'jazz' },
+        { name: 'CLASSICAL', value: 'classical' }
     ];
 
     difficulties: Array<any> = [

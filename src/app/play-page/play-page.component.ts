@@ -22,7 +22,7 @@ export class PlayPageComponent implements OnInit {
     playerStreak = 0;
     playMultiplayer = true;
     playModeButtonText = "Play solo"
-    players : any;
+    players: any;
 
     constructor(private sanitizer: DomSanitizer,
         private api: ApiFetchService,
@@ -38,7 +38,7 @@ export class PlayPageComponent implements OnInit {
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
             this.generateTrack(0);
         } else {
-            this.router.navigateByUrl('/quiz');
+            //this.router.navigateByUrl('/quiz');
         }
     }
 
@@ -77,51 +77,51 @@ export class PlayPageComponent implements OnInit {
 
     checkAnswer(answer: any) {
         const song = this.song.title.toLowerCase().split('-')[0].split("(")[0].trim();
-        
+
         if (answer.toLowerCase() === song) {
             this.playerAnswer = "rätt svar"
             this.playerStreak++;
-            setTimeout(()=> {this.correctAnswer()},2000)
+            setTimeout(() => { this.correctAnswer() }, 2000)
         } else {
             this.playerAnswer = "fel svar"
             this.playerStreak = 0;
-            this.isShow= false;
-            setTimeout(()=> {this.isShow=true},1900)
-            setTimeout(()=> {this.wrongAnswer()},2000) 
+            this.isShow = false;
+            setTimeout(() => { this.isShow = true }, 1900)
+            setTimeout(() => { this.wrongAnswer() }, 2000)
 
         }
     }
 
     togglePlayMode() {
         this.playMultiplayer = !this.playMultiplayer;
-        this.playMultiplayer ? this.isShow=false : this.isShow=true;
+        this.playMultiplayer ? this.isShow = false : this.isShow = true;
         this.playMultiplayer ? this.playModeButtonText = "Play solo" : this.playModeButtonText = 'Play "multiplayer"'
     }
 
-    addPoint(index : any){
+    addPoint(index: any) {
         this.players[index].points++;
     }
 
-    removePoint(index : any){
+    removePoint(index: any) {
 
-        if(this.players[index].points>0){
+        if (this.players[index].points > 0) {
             this.players[index].points--;
         }
+
+
+    }
+    /* 
+        checkLeader(){
+            let leader = {name: "", points: 0};
+            for(let i=0; i < this.players.length; i++){
+                let player = this.players[i];
+                if(player.points>leader.points){
+                    leader=player;
+                }
     
-
-    }
-/* 
-    checkLeader(){
-        let leader = {name: "", points: 0};
-        for(let i=0; i < this.players.length; i++){
-            let player = this.players[i];
-            if(player.points>leader.points){
-                leader=player;
             }
-
+            return leader;
         }
-        return leader;
-    }
- */
+     */
 
 }

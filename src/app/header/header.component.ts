@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
     template: `
         <div>
             <header>
-                <nav class="navbar" style="background-color: black">
+                <nav class="navbar" style="background-color: rgba(0,0,0,0.15); font-weight:700">
                     <div class="container-fluid" style="max-width: 1150px">
                         <a class="navbar-brand text-white">Spotify Song Quiz</a>
                         <ul class="nav">
@@ -16,7 +16,8 @@ import { Component, OnInit } from '@angular/core';
                 </nav>
             </header>
         </div>
-    `
+    `,
+    styleUrls: ['./header.component.css']
 
 })
 export class HeaderComponent implements OnInit {

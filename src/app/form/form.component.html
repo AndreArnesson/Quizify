@@ -1,15 +1,17 @@
-<div>
-    <div style="font-weight: 700; font-size: 30px;">
-        Start a new quiz
+<div class="wrapper">
+    <div class="title_text">
+        START NEW QUIZ
     </div>
     <div>
         <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)" novalidate>
-            <h6><b>Genres ({{checkedNumber}} / {{checkedLimit}})</b></h6>
+            <h6 style="font-size: 16px;">
+                <div class="ball"></div><b>GENRES ({{checkedNumber}} / {{checkedLimit}})</b>
+            </h6>
             <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="form-group">
                 <div class="form-check-inline col-md-2" *ngFor="let item of genres; let i=index">
                     <label>
-                        <input #checkBox type="checkbox" ngModel name="{{item.value}}" [value]="item.value"
-                            (click)="onClickHandler($event, checkBox)" />
+                        <input #checkBox class="genre_box" type="checkbox" ngModel name="{{item.value}}"
+                            [value]="item.value" (click)="onClickHandler($event, checkBox)" />
                         {{item.name}}
                     </label>
                 </div>
@@ -17,25 +19,28 @@
                     genres</small>
             </div>
             <div class="form-group">
-                <h6><b>Difficulty</b></h6>
-                <select class="form-control" ngModel name="difficulty" #difficulty="ngModel" style="width:300px"
-                    required>
+                <h6 style="font-size: 16px;">
+                    <div class="ball"></div><b>DIFFICULTY</b>
+                </h6>
+                <select class="dif_select form-control" ngModel name="difficulty" #difficulty="ngModel"
+                    style="width:300px" required>
                     <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a
-                    difficulty.
+                    difficulty
                 </div>
             </div>
-            <h6><b>Add players</b></h6>
-            <input type="text" onfocus="this.value=''" #player>
-            <Button class="btn btn-info" type="button" (click)="addPlayer(player.value)">Add</Button>
-
-            <input class="btn col-md-12" type="submit" value="Start quiz"
+            <h6 style="font-size: 16px;">
+                <div class="ball"></div><b>ADD PLAYERS</b>
+            </h6>
+            <input class="add_player_box" type="text" onfocus="this.value=''" #player>
+            <Button class="btn btn-info" id="add" type="button" (click)="addPlayer(player.value)">ADD</Button>
+            <input class="btn" id="start" type="submit" value="START QUIZ"
                 [disabled]="!difficulty.valid || !enoughBoxesTicked" />
         </form>
     </div>
     <div class="m-5" *ngIf="players.length>0">
-        <h4><b>Players</b></h4>
+        <h4><b>CURRENT PLAYERS</b></h4>
         <div *ngFor="let player of players">
             <h5>{{player.name}}</h5>
         </div>
