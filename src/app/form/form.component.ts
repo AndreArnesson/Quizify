@@ -38,9 +38,7 @@ export class FormComponent implements OnInit {
     constructor(private router: Router, private quizService: QuizService) {
     }
 
-    ngOnInit(): void {
-        this.players = this.players.filter((value: {}) => Object.keys(value).length !== 0); //fattar inte varför jag ska behöva göra så här
-    }
+    ngOnInit(): void {}
 
     onChange(form: any): void {
         let counter = 0;

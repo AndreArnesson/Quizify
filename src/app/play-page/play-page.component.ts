@@ -16,12 +16,10 @@ export class PlayPageComponent implements OnInit {
     private popularity = 100;
     private genreSeeds: any;
     correct = 0;
-    wrong = 0;
     streak = 0;
     playerAnswer = '';
     playerStreak = 0;
-    playMultiplayer = true;
-    playModeButtonText = 'Play solo';
+    playMultiplayer = false;
     players: any;
 
     constructor(private sanitizer: DomSanitizer,
@@ -36,6 +34,9 @@ export class PlayPageComponent implements OnInit {
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
             this.players = quizParams.players;
+            if (this.players.length !== 0) {
+                this.playMultiplayer = true;
+            }
             this.generateTrack(0);
         } else {
             // this.router.navigateByUrl('/quiz');
@@ -90,12 +91,6 @@ export class PlayPageComponent implements OnInit {
             setTimeout(() => { this.wrongAnswer() }, 2000);
 
         }
-    }
-
-    togglePlayMode(): void {
-        this.playMultiplayer = !this.playMultiplayer;
-        this.playMultiplayer ? this.isShow = false : this.isShow = true;
-        this.playMultiplayer ? this.playModeButtonText = 'Play solo' : this.playModeButtonText = 'Play "multiplayer"';
     }
 
     addPoint(index: any): void {
