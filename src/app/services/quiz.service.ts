@@ -4,20 +4,14 @@ import { Injectable } from '@angular/core';
 
 export class QuizService {
     private quizParameters: any;
-    private players: any
 
     constructor() {}
 
-    setQuizParameters(params: any, players : any): void {
+    setQuizParameters(params: any): void {
         this.quizParameters = params;
-        this.players = players;
     }
 
     getQuizParameters(): any {
         return this.quizParameters;
-    }
-
-    getPlayers(): any {
-        return this.players;
     }
 }

@@ -29,11 +29,11 @@ export class FormComponent implements OnInit {
         { name: 'What? (0)', value: 0 }
     ];
 
-    checkedNumber: number = 0;
-    checkedLimit: number = 5;
-    isDisabled: boolean = false;
-    enoughBoxesTicked: boolean = false;
-    players: any = [{}];
+    checkedNumber = 0;
+    checkedLimit = 5;
+    isDisabled = false;
+    enoughBoxesTicked = false;
+    players = Array<any>();
 
     constructor(private router: Router, private quizService: QuizService) {
     }
@@ -49,23 +49,24 @@ export class FormComponent implements OnInit {
                 counter++;
             }
         }
-        this.enoughBoxesTicked = counter > 0 && counter < 6 ? true : false;
+        this.enoughBoxesTicked = counter > 0 && counter < 6;
     }
 
     onSubmit(form: any): void {
         if (form.valid) {
             const quizParams = form.value;
-            this.quizService.setQuizParameters(quizParams, this.players);
+            quizParams.players = this.players;
+            this.quizService.setQuizParameters(quizParams);
             this.router.navigateByUrl('/play');
         } else {
             alert('Choose difficulty');
         }
     }
 
-    onClickHandler(event: Event, item: any) {
+    onClickHandler(event: Event, item: any): void {
         if (item.checked) {
             if (this.checkedNumber + 1 > this.checkedLimit) {
-                event.preventDefault()
+                event.preventDefault();
             } else {
                 this.checkedNumber += 1;
             }
@@ -74,9 +75,9 @@ export class FormComponent implements OnInit {
         }
     }
 
-    addPlayer(value: any) {
-        if (value != "") {
-            this.players.push({ name: value, points: 0 })
+    addPlayer(value: any): void {
+        if (value !== '') {
+            this.players.push({ name: value, points: 0 });
         }
     }
 }

@@ -8,7 +8,7 @@
 }
 
 .player_frame {
-    margin: 40px 0; 
+    margin: 40px 0;
     padding: 20px 0;
     background: #1b1c1b;
 }
@@ -35,7 +35,7 @@
 .quiz-btn {
     width: 65px;
     height: 40px;
-    border-radius: 0px;
+    border-radius: 0;
     margin: 2px;
 }
 
@@ -49,10 +49,10 @@
     margin-top:5px;
 }
 
-.btn-circle { 
+.btn-circle {
     width: 30px;
     height: 30px;
-    padding: 6px 0px;
+    padding: 6px 0;
     border-radius: 15px;
     text-align: center;
     font-size: 12px;
