@@ -1,7 +1,3 @@
-.wrapper {
-    color: white
-}
-
 .ball {
     background-color: #1DB954;
     height: 12px;
@@ -13,7 +9,6 @@
 
 .btn {
     background-color: #1DB954;
-    color:white;
     border-radius: 0;
     font-weight: 700;
 }
