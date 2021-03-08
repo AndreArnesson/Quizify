@@ -2,6 +2,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700");
 body {
-    font-family: 'Oswald', !important;
+    font-family: 'Oswald' !important;
+    color:white !important;
     background-color: #f8f9fa;
 }

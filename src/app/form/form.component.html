@@ -3,15 +3,17 @@
         START NEW QUIZ
     </div>
     <div>
-        <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)" novalidate>
+        <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)"
+              (keydown.enter)="$event.preventDefault()" novalidate>
             <h6 style="font-size: 16px;">
-                <div class="ball"></div><b>GENRES ({{checkedNumber}} / {{checkedLimit}})</b>
+                <div class="ball"></div>
+                <b>GENRES ({{checkedNumber}} / {{checkedLimit}})</b>
             </h6>
             <div #genresGroup="ngModelGroup" ngModelGroup="genres" class="form-group">
                 <div class="form-check-inline col-md-2" *ngFor="let item of genres; let i=index">
                     <label>
                         <input #checkBox class="genre_box" type="checkbox" ngModel name="{{item.value}}"
-                            [value]="item.value" (click)="onClickHandler($event, checkBox)" />
+                               [value]="item.value" (click)="onClickHandler($event, checkBox)"/>
                         {{item.name}}
                     </label>
                 </div>
@@ -20,23 +22,29 @@
             </div>
             <div class="form-group">
                 <h6 style="font-size: 16px;">
-                    <div class="ball"></div><b>DIFFICULTY</b>
+                    <div class="ball"></div>
+                    <b>DIFFICULTY</b>
                 </h6>
                 <select class="dif_select form-control" ngModel name="difficulty" #difficulty="ngModel"
-                    style="width:300px" required>
+                        style="width:300px" required>
                     <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a
                     difficulty
                 </div>
             </div>
-            <h6 style="font-size: 16px;">
-                <div class="ball"></div><b>ADD PLAYERS</b>
-            </h6>
-            <input class="add_player_box" type="text" onfocus="this.value=''" #player>
-            <Button class="btn btn-info" id="add" type="button" (click)="addPlayer(player.value)">ADD</Button>
+            <div class="form-group">
+                <h6 style="font-size: 16px;">
+                    <div class="ball"></div>
+                    <b>ADD PLAYERS</b>
+                </h6>
+                <input class="add_player_box" ngModel name="players" type="text" onfocus="this.value=''"
+                       #player="ngModel">
+                <Button class="btn btn-info" id="add" type="button" (click)="addPlayer(player.value)">ADD</Button>
+
+            </div>
             <input class="btn" id="start" type="submit" value="START QUIZ"
-                [disabled]="!difficulty.valid || !enoughBoxesTicked" />
+                   [disabled]="!difficulty.valid || !enoughBoxesTicked"/>
         </form>
     </div>
     <div class="m-5" *ngIf="players.length>0">

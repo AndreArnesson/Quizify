@@ -16,35 +16,36 @@ export class PlayPageComponent implements OnInit {
     private popularity = 100;
     private genreSeeds: any;
     correct = 0;
-    wrong = 0;
     streak = 0;
-    playerAnswer: string = "";
+    playerAnswer = '';
     playerStreak = 0;
-    playMultiplayer = true;
-    playModeButtonText = "Play solo"
+    playMultiplayer = false;
     players: any;
 
     constructor(private sanitizer: DomSanitizer,
-        private api: ApiFetchService,
-        private quizService: QuizService,
-        private router: Router) {
+                private api: ApiFetchService,
+                private quizService: QuizService,
+                private router: Router) {
     }
 
     ngOnInit(): void {
         const quizParams = this.quizService.getQuizParameters();
-        this.players = this.quizService.getPlayers();
         if (quizParams) {
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
+            this.players = quizParams.players;
+            if (this.players.length !== 0) {
+                this.playMultiplayer = true;
+            }
             this.generateTrack(0);
         } else {
-            //this.router.navigateByUrl('/quiz');
+            // this.router.navigateByUrl('/quiz');
         }
     }
 
     async generateTrack(popular: number) {
         console.log(this.players);
-        this.playerAnswer = "";
+        this.playerAnswer = '';
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
@@ -75,34 +76,28 @@ export class PlayPageComponent implements OnInit {
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
 
-    checkAnswer(answer: any) {
-        const song = this.song.title.toLowerCase().split('-')[0].split("(")[0].trim();
+    checkAnswer(answer: any): void {
+        const song = this.song.title.toLowerCase().split('-')[0].split('(')[0].trim();
 
         if (answer.toLowerCase() === song) {
-            this.playerAnswer = "rätt svar"
+            this.playerAnswer = 'rätt svar';
             this.playerStreak++;
-            setTimeout(() => { this.correctAnswer() }, 2000)
+            setTimeout(() => { this.correctAnswer() }, 2000);
         } else {
-            this.playerAnswer = "fel svar"
+            this.playerAnswer = 'fel svar';
             this.playerStreak = 0;
             this.isShow = false;
-            setTimeout(() => { this.isShow = true }, 1900)
-            setTimeout(() => { this.wrongAnswer() }, 2000)
+            setTimeout(() => { this.isShow = true }, 1900);
+            setTimeout(() => { this.wrongAnswer() }, 2000);
 
         }
     }
 
-    togglePlayMode() {
-        this.playMultiplayer = !this.playMultiplayer;
-        this.playMultiplayer ? this.isShow = false : this.isShow = true;
-        this.playMultiplayer ? this.playModeButtonText = "Play solo" : this.playModeButtonText = 'Play "multiplayer"'
-    }
-
-    addPoint(index: any) {
+    addPoint(index: any): void {
         this.players[index].points++;
     }
 
-    removePoint(index: any) {
+    removePoint(index: any): void {
 
         if (this.players[index].points > 0) {
             this.players[index].points--;
@@ -110,7 +105,7 @@ export class PlayPageComponent implements OnInit {
 
 
     }
-    /* 
+    /*
         checkLeader(){
             let leader = {name: "", points: 0};
             for(let i=0; i < this.players.length; i++){
@@ -118,7 +113,7 @@ export class PlayPageComponent implements OnInit {
                 if(player.points>leader.points){
                     leader=player;
                 }
-    
+
             }
             return leader;
         }

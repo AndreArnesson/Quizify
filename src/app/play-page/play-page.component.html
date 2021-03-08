@@ -1,30 +1,32 @@
-<div class="wrapper">
-    <div class="player_frame row mx-auto">
-        <div class="card text-center col-md-2 offset-md-2">
-            <div>
-                <iframe class="icon" [src]=" song.url" width="80" height="80" allowtransparency="true"
-                    allow="encrypted-media" frameborder="0" class="justify-content-center player"
-                    style="transform: scale(2,2);">
-                </iframe>
-            </div>
+<div>
+    <div class="player_frame row mx-auto text-center">
+        <div class="col-md-2 offset-md-2">
+            <iframe [src]="song.url" width="80" height="80" allowtransparency="true" allow="encrypted-media"
+                frameborder="0">
+            </iframe>
         </div>
-        <div class="songInfo card col-md-5" *ngIf="!isShow">
-            <div class="headingText">PLAYING</div>
-            <div class="songText"> {{song.title}}</div>
-            <div class="headingText">WITH</div>
-            <div class="songText"> {{song.artist}}</div>
+        <div class="songInfo col-md-5">
+            <div class="headingText" *ngIf="!isShow">PLAYING</div>
+            <div class="songText" *ngIf="!isShow"> {{song.title}}</div>
+            <div class="headingText" *ngIf="!isShow">WITH</div>
+            <div class="songText" *ngIf="!isShow"> {{song.artist}}</div>
+        </div>
+        <button class="btn col-md-1" (click)="hideAnswer()">
+            {{hideBtnText}}
+        </button>
+    </div>
+    <div class="row mx-auto">
+        <div class="buttons">
+            <button class="quiz-btn btn" (click)="correctAnswer()">Harder</button>
+            <button class="quiz-btn btn" (click)="wrongAnswer()">Easier</button>
         </div>
     </div>
-</div>
 
-<div>
-    <button class="btn" (click)="togglePlayMode()">{{playModeButtonText}}</button>
-</div>
-<div class="wrapper">
-    <div [hidden]="playMultiplayer" class="row mx-auto">
-        <div class="info_frame col-md-12 text-center">
+
+    <div class="row col-md-8 offset-md-2">
+        <div [hidden]="playMultiplayer">
             <label>
-                <h6>Vilken låt spelas?</h6>
+                <p>Vilken låt spelas?</p>
                 <input id="1" type="text" #box onfocus="this.value=''" />
             </label>
             <button class="btn" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
@@ -32,26 +34,15 @@
             <ng-template #elseBlock>
                 <h1 class="text-danger">{{playerAnswer}}</h1>
             </ng-template>
-            <h6>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</h6>
+            <p>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</p>
+        </div>
+
+        <div [hidden]="!playMultiplayer">
+            <div class="row mx-auto" *ngFor="let player of players; let i=index">
+                <button (click)="addPoint(i)" class="quiz-btn btn-circle">+</button>
+                <button (click)="removePoint(i)" class="quiz-btn btn-circle">-</button>
+                <p class="p-1">{{player.points}} Points - {{player.name}} </p>
+            </div>
         </div>
     </div>
 </div>
-
-<!-- buttons -->
-
-<div>
-    <button class="quiz-btn btn" (click)="correctAnswer()">Yes</button>
-    <button class="quiz-btn btn" (click)="wrongAnswer()">No</button>
-</div>
-
-<div [hidden]="!playMultiplayer">
-    <div class="row mx-auto" *ngFor="let player of players; let i=index">
-        <h5 class="p-1"> {{player.name}} - {{player.points}} Points</h5>
-        <button (click)="addPoint(i)" class="quiz-btn btn-circle">+</button>
-        <button (click)="removePoint(i)" class="quiz-btn btn-circle">-</button>
-    </div>
-</div>
-
-<button class="quiz-btn col-md-1" (click)="hideAnswer()">
-    {{hideBtnText}}
-</button>
