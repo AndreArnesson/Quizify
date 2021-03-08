@@ -12,11 +12,11 @@ export class FormComponent implements OnInit {
     genres: Array<any> = [
         { name: 'POP', value: 'pop' },
         { name: 'HIP HOP', value: 'hip-hop' },
-        { name: 'RAP', value: 'rap' },
         { name: 'ROCK\'N\'ROLL', value: 'rock-n-roll' },
         { name: 'PUNK', value: 'punk' },
         { name: 'METAL', value: 'metal' },
         { name: 'EDM', value: 'edm' },
+        { name: 'MOVIES', value: 'movies' },
         { name: 'COUNTRY', value: 'country' },
         { name: 'JAZZ', value: 'jazz' },
         { name: 'CLASSICAL', value: 'classical' }
