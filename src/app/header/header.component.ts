@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-header',
-    template: `
+    template:
+        //Vem fan skriver inline html i angular? Den personen behöver spirituell hjälp. Ring mig vid besvär, vi kan ta ett samtal om saker och ting. Se vad som orsakar felet där inne.
+        `
         <div>
             <header>
                 <nav class="navbar" style="background-color: rgba(0,0,0,0.15); font-weight:700">

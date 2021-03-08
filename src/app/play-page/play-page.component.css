@@ -11,6 +11,12 @@
     margin: 40px 0; 
     padding: 20px 0;
     background: #1b1c1b;
+    height: 300px;
+}
+
+.info_frame {
+    height: 200px;
+    background: #1b1c1b;
 }
 
 .headingText {
