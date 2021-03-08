@@ -15,12 +15,6 @@ export class PlayPageComponent implements OnInit {
     hideBtnText = 'Hide answer';
     private popularity = 100;
     private genreSeeds: any;
-    correct = 0;
-    streak = 0;
-    playerAnswer = '';
-    playerStreak = 0;
-    playMultiplayer = false;
-    players: any;
 
     constructor(private sanitizer: DomSanitizer,
                 private api: ApiFetchService,
@@ -33,19 +27,13 @@ export class PlayPageComponent implements OnInit {
         if (quizParams) {
             this.popularity = quizParams.difficulty;
             this.genreSeeds = Object.keys(quizParams.genres).filter((genre: string) => quizParams.genres[genre]);
-            this.players = quizParams.players;
-            if (this.players.length !== 0) {
-                this.playMultiplayer = true;
-            }
             this.generateTrack(0);
         } else {
-            // this.router.navigateByUrl('/quiz');
+            this.router.navigateByUrl('/quiz');
         }
     }
 
     async generateTrack(popular: number) {
-        console.log(this.players);
-        this.playerAnswer = '';
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
@@ -57,6 +45,7 @@ export class PlayPageComponent implements OnInit {
                 artist: track.artists[0].name
             };
         });
+        this.quizService.setSong(this.song);
     }
 
     correctAnswer(): void {
@@ -75,48 +64,4 @@ export class PlayPageComponent implements OnInit {
         this.isShow = !this.isShow;
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
     }
-
-    checkAnswer(answer: any): void {
-        const song = this.song.title.toLowerCase().split('-')[0].split('(')[0].trim();
-
-        if (answer.toLowerCase() === song) {
-            this.playerAnswer = 'rätt svar';
-            this.playerStreak++;
-            setTimeout(() => { this.correctAnswer() }, 2000);
-        } else {
-            this.playerAnswer = 'fel svar';
-            this.playerStreak = 0;
-            this.isShow = false;
-            setTimeout(() => { this.isShow = true }, 1900);
-            setTimeout(() => { this.wrongAnswer() }, 2000);
-
-        }
-    }
-
-    addPoint(index: any): void {
-        this.players[index].points++;
-    }
-
-    removePoint(index: any): void {
-
-        if (this.players[index].points > 0) {
-            this.players[index].points--;
-        }
-
-
-    }
-    /*
-        checkLeader(){
-            let leader = {name: "", points: 0};
-            for(let i=0; i < this.players.length; i++){
-                let player = this.players[i];
-                if(player.points>leader.points){
-                    leader=player;
-                }
-
-            }
-            return leader;
-        }
-     */
-
 }

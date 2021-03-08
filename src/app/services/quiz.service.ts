@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class QuizService {
     private quizParameters: any;
+    private song: any;
 
     constructor() {}
 
@@ -13,5 +14,13 @@ export class QuizService {
 
     getQuizParameters(): any {
         return this.quizParameters;
+    }
+
+    setSong(song: any): void {
+        this.song = song;
+    }
+
+    getSong(): any {
+        return this.song;
     }
 }

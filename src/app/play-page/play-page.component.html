@@ -21,28 +21,7 @@
             <button class="quiz-btn btn" (click)="wrongAnswer()">Easier</button>
         </div>
     </div>
-
-
-    <div class="row col-md-8 offset-md-2">
-        <div [hidden]="playMultiplayer">
-            <label>
-                <p>Vilken låt spelas?</p>
-                <input id="1" type="text" #box onfocus="this.value=''" />
-            </label>
-            <button class="btn" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
-            <h1 *ngIf="playerAnswer=='rätt svar'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
-            <ng-template #elseBlock>
-                <h1 class="text-danger">{{playerAnswer}}</h1>
-            </ng-template>
-            <p>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</p>
-        </div>
-
-        <div [hidden]="!playMultiplayer">
-            <div class="row mx-auto" *ngFor="let player of players; let i=index">
-                <button (click)="addPoint(i)" class="quiz-btn btn-circle">+</button>
-                <button (click)="removePoint(i)" class="quiz-btn btn-circle">-</button>
-                <p class="p-1">{{player.points}} Points - {{player.name}} </p>
-            </div>
-        </div>
+    <div class="row col-md-8 offset-md-2 info_frame">
+        <router-outlet></router-outlet>
     </div>
 </div>

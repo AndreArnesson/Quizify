@@ -6,3 +6,9 @@ body {
     color:white !important;
     background-color: #f8f9fa;
 }
+
+.btn {
+    background-color: #1DB954 !important;
+    border-radius: 0 !important;
+    color:white;
+}

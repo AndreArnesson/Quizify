@@ -13,6 +13,8 @@ import {PlayPageComponent} from './play-page/play-page.component';
 import {FooterComponent} from './footer/footer.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {AboutComponent} from './about/about.component';
+import { MultiplayerComponent } from './multiplayer/multiplayer.component';
+import { SinglePlayerComponent } from './single-player/single-player.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import {AboutComponent} from './about/about.component';
         PlayPageComponent,
         FooterComponent,
         PageNotFoundComponent,
-        AboutComponent
+        AboutComponent,
+        MultiplayerComponent,
+        SinglePlayerComponent
     ],
     imports: [
         BrowserModule,

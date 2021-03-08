@@ -50,17 +50,6 @@ export class FormComponent implements OnInit {
         this.enoughBoxesTicked = counter > 0 && counter < 6;
     }
 
-    onSubmit(form: any): void {
-        if (form.valid) {
-            const quizParams = form.value;
-            quizParams.players = this.players;
-            this.quizService.setQuizParameters(quizParams);
-            this.router.navigateByUrl('/play');
-        } else {
-            alert('Choose difficulty');
-        }
-    }
-
     onClickHandler(event: Event, item: any): void {
         if (item.checked) {
             if (this.checkedNumber + 1 > this.checkedLimit) {
@@ -76,6 +65,20 @@ export class FormComponent implements OnInit {
     addPlayer(value: any): void {
         if (value !== '') {
             this.players.push({ name: value, points: 0 });
+        }
+        console.log(this.players);
+    }
+
+    onSubmit(form: any): void {
+        if (form.valid) {
+            const quizParams = form.value;
+            let url = 'play/singleplayer';
+            if (this.players.length > 0) {
+                quizParams.players = this.players;
+                url = 'play/multiplayer';
+            }
+            this.quizService.setQuizParameters(quizParams);
+            this.router.navigateByUrl(url);
         }
     }
 }
