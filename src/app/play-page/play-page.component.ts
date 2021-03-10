@@ -13,13 +13,14 @@ export class PlayPageComponent implements OnInit {
     isShow = false;
     song: any;
     hideBtnText = 'Hide answer';
+    previousSongs: string[] = [];
     private popularity = 100;
     private genreSeeds: any;
 
     constructor(private sanitizer: DomSanitizer,
-                private api: ApiFetchService,
-                private quizService: QuizService,
-                private router: Router) {
+        private api: ApiFetchService,
+        private quizService: QuizService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -34,18 +35,30 @@ export class PlayPageComponent implements OnInit {
     }
 
     async generateTrack(popular: number) {
+
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
+
         const newTrack = await this.api.generateRecommendation(token.access_token, genreList, this.popularity.toString(), '1');
-        newTrack.tracks.forEach(track => {
-            this.song = {
-                url: this.transform('https://open.spotify.com/embed/track/' + track.id),
-                title: track.name,
-                artist: track.artists[0].name
-            };
-        });
-        this.quizService.setSong(this.song);
+        if (newTrack.tracks.length > 0) {
+            newTrack.tracks.forEach(track => {
+                if (this.checkIfNotPlayed(track.id)) {
+                    this.song = {
+                        url: this.transform('https://open.spotify.com/embed/track/' + track.id),
+                        title: track.name,
+                        artist: track.artists[0].name
+                    };
+                    this.previousSongs.push(track.id);
+
+                    this.quizService.setSong(this.song);
+                } else {
+                    this.generateTrack(-3);
+                }
+            });
+        } else {
+            this.generateTrack(-3);
+        }
     }
 
     correctAnswer(): void {
@@ -63,5 +76,9 @@ export class PlayPageComponent implements OnInit {
     hideAnswer(): void {
         this.isShow = !this.isShow;
         this.isShow ? this.hideBtnText = 'Show answer' : this.hideBtnText = 'Hide answer';
+    }
+
+    checkIfNotPlayed(song: any) {
+        return !this.previousSongs.includes(song);
     }
 }
