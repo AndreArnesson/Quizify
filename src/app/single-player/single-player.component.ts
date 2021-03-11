@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import { QuizService} from '../services/quiz.service';
+import { Component, Injector, OnInit } from '@angular/core';
+import { QuizService } from '../services/quiz.service';
+import { PlayPageComponent } from '../play-page/play-page.component';
 
 @Component({
     selector: 'app-single-player',
@@ -13,10 +14,16 @@ export class SinglePlayerComponent implements OnInit {
     streak = 0;
     playerAnswer = '';
     playerStreak = 0;
+    parentComponent: any;
 
-    constructor(private quiz: QuizService) {}
+
+    constructor(private quiz: QuizService, private injector: Injector) {
+        this.parentComponent = this.injector.get(PlayPageComponent);
+
+    }
 
     ngOnInit(): void {
+        this.parentComponent.hideAnswer();
     }
 
     checkAnswer(answer: any): void {
@@ -26,13 +33,15 @@ export class SinglePlayerComponent implements OnInit {
         if (answer.toLowerCase() === songName) {
             this.playerAnswer = 'rätt svar';
             this.playerStreak++;
-            // setTimeout(() => { this.correctAnswer() }, 2000);
+            setTimeout(() => { this.parentComponent.correctAnswer() }, 2000);
         } else {
             this.playerAnswer = 'fel svar';
             this.playerStreak = 0;
-            // setTimeout(() => { this.wrongAnswer() }, 2000);
-
+            this.parentComponent.isShow = false;
+            setTimeout(() => this.parentComponent.isShow = true, 1900);
+            setTimeout(() => { this.parentComponent.wrongAnswer() }, 2000);
         }
+        setTimeout(() => this.playerAnswer = '', 1900);
     }
 
 }

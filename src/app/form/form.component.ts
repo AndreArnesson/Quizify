@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
     genres: Array<any> = [
         { name: 'POP', value: 'pop' },
         { name: 'HIP HOP', value: 'hip-hop' },
-        { name: 'ROCK\'N\'ROLL', value: 'rock-n-roll' },
+        { name: 'ROCK', value: 'rock-n-roll' },
         { name: 'PUNK', value: 'punk' },
         { name: 'METAL', value: 'metal' },
         { name: 'EDM', value: 'edm' },
@@ -38,7 +38,7 @@ export class FormComponent implements OnInit {
     constructor(private router: Router, private quizService: QuizService) {
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     onChange(form: any): void {
         let counter = 0;
