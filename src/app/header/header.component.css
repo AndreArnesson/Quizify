@@ -1,3 +1,16 @@
 .nav-link:hover {
-    color: #1DB954;
+    color: #1DB954 !important;
+}
+
+.navbar-brand {
+    color: #1DB954 !important;
+}
+
+.navbar {
+    background-color: rgba(0,0,0,0.4);
+    font-weight:700;
+}
+
+.container-fluid {
+    max-width: 1150px;
 }

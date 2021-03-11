@@ -11,9 +11,15 @@
             <div class="headingText" *ngIf="!isShow">WITH</div>
             <div class="songText" *ngIf="!isShow"> {{song.artist}}</div>
         </div>
-        <button class="btn col-md-1" (click)="hideAnswer()">
-            {{hideBtnText}}
-        </button>
+        <div class="col-md-1">
+            <button class="player-btn btn" (click)="hideAnswer()">
+                {{hideBtnText}}
+            </button>
+            <button class="player-btn btn" (click)="generateTrack(0)">
+                Next song
+            </button>
+        </div>
+
     </div>
     <div class="row mx-auto">
         <div class="buttons">
@@ -21,7 +27,7 @@
             <button class="quiz-btn btn" (click)="wrongAnswer()">Easier</button>
         </div>
     </div>
-    <div class="row col-md-8 offset-md-2 info_frame">
+    <div class="row col-md-8 offset-md-2 info-frame">
         <router-outlet></router-outlet>
     </div>
 </div>

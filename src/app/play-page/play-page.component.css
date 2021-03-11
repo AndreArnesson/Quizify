@@ -1,5 +1,5 @@
 iframe {
-    transform: scale(2.38,2.38);
+    transform: scale(2.37,2.37);
     margin: 55px 12px 50px 0;
     background-color: black;
 }
@@ -9,7 +9,7 @@ iframe {
     border-radius: 15px;
 }
 
-.info_frame {
+.info-frame {
     min-height: 200px;
     background: #1b1c1b;
 }
@@ -38,10 +38,17 @@ iframe {
     width:168px;
     text-align: center;
     margin:auto;
+    margin-bottom:20px;
 }
 
 .quiz-btn {
     width:80px;
     border-radius: 0;
     margin: 2px;
+}
+
+.player-btn {
+    margin: 2px;
+    width:80px;
+    height:91px;
 }
