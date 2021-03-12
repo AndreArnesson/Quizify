@@ -4,7 +4,7 @@
     </div>
     <div>
         <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)"
-            (keydown.enter)="$event.preventDefault()" novalidate>
+             novalidate>
             <h6 style="font-size: 16px;">
                 <div class="ball"></div>
                 <b>GENRES ({{checkedNumber}} / {{checkedLimit}})</b>
@@ -36,16 +36,19 @@
                     difficulty
                 </div>
             </div>
+            <form #form2="ngForm" (change)= "onChange(form)" (ngSubmit)="onSubmitPlayer(form2)" novalidate>
             <div class="form-group">
                 <h6 style="font-size: 16px;">
                     <div class="ball"></div>
                     <b>ADD PLAYERS</b>
                 </h6>
                 <input class="add_player_box" ngModel name="players" type="text" onfocus="this.value=''"
-                    #player="ngModel">
-                <Button class="btn btn-info" id="add" type="button" (click)="addPlayer(player.value)">ADD</Button>
+                    #player="ngModel" required>
+                <Button class="btn btn-info" id="add" type="button" (click)="onSubmitPlayer(form2)">ADD</Button>
 
             </div>
+            </form>
+        
             <input class="btn" id="start" type="submit" value="START QUIZ"
                 [disabled]="!difficulty.valid || !enoughBoxesTicked" />
         </form>
