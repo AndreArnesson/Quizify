@@ -67,7 +67,6 @@ export class FormComponent implements OnInit {
             this.players.push({ name: form.value.players, points: 0 });
             form.reset();
         }
-        console.log(this.players);
     }
 
     onSubmit(form: any): void {
