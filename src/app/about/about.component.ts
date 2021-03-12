@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-about',
   template: `
     <div>
-        <div style="font-weight: 700; font-size: 30px;">
+        <div class="title_text">
             About
         </div>
       <p>We do music quiz!</p>

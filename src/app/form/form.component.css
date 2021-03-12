@@ -24,14 +24,9 @@
     margin: 25px auto;
 }
 
-.title_text {
-    font-weight: 700;
-    font-size: 30px;
-    margin: 20px 0 10px;
-}
-
 .dif_select {
     border-radius: 0;
+    width:300px
 }
 
 .add_player_box {

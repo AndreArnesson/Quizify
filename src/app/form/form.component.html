@@ -5,7 +5,7 @@
     <div>
         <form #form="ngForm" (change)="onChange(form)" (ngSubmit)="onSubmit(form)"
              novalidate>
-            <h6 style="font-size: 16px;">
+            <h6>
                 <div class="ball"></div>
                 <b>GENRES ({{checkedNumber}} / {{checkedLimit}})</b>
             </h6>
@@ -24,12 +24,11 @@
             </div>
 
             <div class="form-group">
-                <h6 style="font-size: 16px;">
+                <h6>
                     <div class="ball"></div>
                     <b>DIFFICULTY</b>
                 </h6>
-                <select class="dif_select form-control" ngModel name="difficulty" #difficulty="ngModel"
-                    style="width:300px" required>
+                <select class="dif_select form-control" ngModel name="difficulty" #difficulty="ngModel" required>
                     <option *ngFor="let dif of difficulties" [value]="dif.value">{{dif.name}}</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="difficulty.touched && !difficulty.valid">Please choose a
@@ -38,7 +37,7 @@
             </div>
             <form #form2="ngForm" (change)= "onChange(form)" (ngSubmit)="onSubmitPlayer(form2)" novalidate>
             <div class="form-group">
-                <h6 style="font-size: 16px;">
+                <h6>
                     <div class="ball"></div>
                     <b>ADD PLAYERS</b>
                 </h6>
@@ -48,7 +47,7 @@
 
             </div>
             </form>
-        
+
             <input class="btn" id="start" type="submit" value="START QUIZ"
                 [disabled]="!difficulty.valid || !enoughBoxesTicked" />
         </form>

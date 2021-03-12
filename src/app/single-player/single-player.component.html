@@ -1,8 +1,8 @@
 <div>
-    <span>What song is being played?</span>
-    <div style="margin: 10px 0;" class="input-group mb-3">
-        <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" /> 
-        <div class="input-group-append">
+    <p>What song is being played?</p>
+    <div class="row">
+        <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" />
+        <div>
             <button class="btn" (click)="checkAnswer(box.value)">Check your answer</button>
         </div>
       </div>

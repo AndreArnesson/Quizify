@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
             <header>
                 <nav class="navbar">
                     <div class="container-fluid">
-                        <a class="navbar-brand text-white">Spotify Song Quiz</a>
+                        <a class="navbar-brand">Spotify Song Quiz</a>
                         <ul class="nav">
                             <li class="navbar-item"><a class="nav-link text-white" routerLink="/quiz">New Quiz</a></li>
                             <li class="navbar-item"><a class="nav-link text-white" routerLink="/about">About page</a></li>

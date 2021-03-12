@@ -5,10 +5,17 @@ body {
     font-family: 'Oswald' !important;
     color:white !important;
     background-color:#111211 !important;
+
 }
 
 .btn {
     background-color: #1DB954 !important;
     border-radius: 0 !important;
     color:white;
+}
+
+.title_text {
+    font-weight: 700;
+    font-size: 30px;
+    margin: 20px 0 10px;
 }
