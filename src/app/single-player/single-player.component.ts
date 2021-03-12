@@ -26,7 +26,7 @@ export class SinglePlayerComponent implements OnInit {
         let song = this.quiz.getSong();
         const songName = song.title.toLowerCase().split('-')[0].split('(')[0].trim();
 
-        if (answer.toLowerCase() === songName) {
+        if (answer.toLowerCase().includes(songName)) {
             this.playerAnswer = 'Correct';
             this.playerStreak++;
             setTimeout(() => { this.parentComponent.changeDif(-3) }, 2000);

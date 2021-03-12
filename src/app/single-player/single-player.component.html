@@ -1,14 +1,21 @@
 <div>
-    <p>What song is being played?</p>
-    <div class="row">
-        <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" />
-        <div>
-            <button class="btn" (click)="checkAnswer(box.value)">Check your answer</button>
+    <form #singleForm="ngForm" (ngSubmit)="checkAnswer(1); singleForm.reset()">
+        <span>What song is being played?</span>
+        <div style="margin: 10px 0;" class="input-group mb-3">
+            <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" ngModel />
+            <div class="input-group-append">
+                <button class="btn" (click)="checkAnswer(box.value); singleForm.reset()">Check your answer</button>
+            </div>
         </div>
-      </div>
-    <h1 *ngIf="playerAnswer==='Correct'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
-    <ng-template #elseBlock>
-        <h1 class="text-danger">{{playerAnswer}}</h1>
-    </ng-template>
-    <p style="text-align: center;">You have guessed correct {{playerStreak}} times in a row!</p>
+    </form>
+    <div>
+        <div class="position-fixed answer">
+            <p *ngIf="playerAnswer==='Correct'; else elseBlock" class="text-success">{{playerAnswer}}</p>
+            <ng-template #elseBlock>
+                <p class="text-danger">{{playerAnswer}}</p>
+            </ng-template>
+        </div>
+        <p class="position-fixed offset-md-1" *ngIf="playerStreak>0" style="text-align: center;">You have guessed
+            correct {{playerStreak}} times in a row!</p>
+    </div>
 </div>

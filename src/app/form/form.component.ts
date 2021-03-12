@@ -23,10 +23,10 @@ export class FormComponent implements OnInit {
     ];
 
     difficulties: Array<any> = [
-        { name: 'Mainstream hits (80)', value: 80 },
-        { name: 'Radio mix (60)', value: 60 },
-        { name: 'Pretentious underground (30)', value: 30 },
-        { name: 'What? (0)', value: 0 }
+        { name: 'Easy (80)', value: 80 },
+        { name: 'Medium (60)', value: 60 },
+        { name: 'Hard (30)', value: 30 },
+        { name: 'Expert (0)', value: 0 }
     ];
 
     checkedNumber = 0;

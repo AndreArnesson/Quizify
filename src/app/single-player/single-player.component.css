@@ -15,3 +15,11 @@ input:focus{
 button {
     margin-left: 5px;
 }
+
+span {
+    margin-left: 18px;
+}
+
+.answer{
+    margin-left: 18px;
+}
