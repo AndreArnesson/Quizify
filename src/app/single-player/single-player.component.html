@@ -1,10 +1,10 @@
 <div>
-    <form #singleForm="ngForm" (ngSubmit)="checkAnswer(1); singleForm.reset()">
+    <form  #singleForm="ngForm" (ngSubmit)="checkAnswer(singleForm)">
         <span>What song is being played?</span>
         <div style="margin: 10px 0;" class="input-group mb-3">
-            <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" ngModel />
+            <input name="answer" class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" ngModel />
             <div class="input-group-append">
-                <button class="btn" (click)="checkAnswer(box.value); singleForm.reset()">Check your answer</button>
+                <button class="btn" (click)="checkAnswer(singleForm)">Check your answer</button>
             </div>
         </div>
     </form>

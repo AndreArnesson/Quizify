@@ -22,11 +22,13 @@ export class SinglePlayerComponent implements OnInit {
         this.parentComponent.hideAnswer();
     }
 
-    checkAnswer(answer: any): void {
+    checkAnswer(form: any): void {
+        
+        console.log(form)
         let song = this.quiz.getSong();
         const songName = song.title.toLowerCase().split('-')[0].split('(')[0].trim();
 
-        if (answer.toLowerCase().includes(songName)) {
+        if (form.value.answer.toLowerCase().includes(songName)) {
             this.playerAnswer = 'Correct';
             this.playerStreak++;
             setTimeout(() => { this.parentComponent.changeDif(-3) }, 2000);
@@ -38,6 +40,7 @@ export class SinglePlayerComponent implements OnInit {
             setTimeout(() => { this.parentComponent.changeDif(3) }, 2000);
         }
         setTimeout(() => this.playerAnswer = '', 1900);
+        form.reset();
     }
 
 }
