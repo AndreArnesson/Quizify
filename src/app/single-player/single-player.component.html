@@ -1,12 +1,14 @@
 <div>
-    <label>
-        <p>Vilken låt spelas?</p>
-        <input id="1" type="text" #box onfocus="this.value=''"/>
-    </label>
-    <button class="btn" (click)="checkAnswer(box.value)">Kolla ditt svar</button>
-    <h1 *ngIf="playerAnswer=='rätt svar'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
+    <span>What song is being played?</span>
+    <div style="margin: 10px 0;" class="input-group mb-3">
+        <input class="input_value" autocomplete="off" type="text" #box onfocus="this.value=''" /> 
+        <div class="input-group-append">
+            <button class="btn" (click)="checkAnswer(box.value)">Check your answer</button>
+        </div>
+      </div>
+    <h1 *ngIf="playerAnswer==='Correct'; else elseBlock" class="text-success">{{playerAnswer}}</h1>
     <ng-template #elseBlock>
         <h1 class="text-danger">{{playerAnswer}}</h1>
     </ng-template>
-    <p>Du har haft {{playerStreak}} rätt i rad. Bra jobbat!</p>
+    <p style="text-align: center;">You have guessed correct {{playerStreak}} times in a row!</p>
 </div>

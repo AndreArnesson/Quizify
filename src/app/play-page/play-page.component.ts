@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
     styleUrls: ['./play-page.component.css']
 })
 export class PlayPageComponent implements OnInit {
-    isShow = false;
+    isShow: boolean = false;
     song: any;
     hideBtnText = 'Hide answer';
     previousSongs: string[] = [];
-    private popularity = 100;
-    private genreSeeds: any;
+    popularity: number = 0;
+    genreSeeds: any;
 
     constructor(private sanitizer: DomSanitizer,
         private api: ApiFetchService,
@@ -23,6 +23,9 @@ export class PlayPageComponent implements OnInit {
         private router: Router) {
     }
 
+    /*
+    Collects quiz data from user form, loads page if form was entered correctly
+    */
     ngOnInit(): void {
         const quizParams = this.quizService.getQuizParameters();
         if (quizParams) {
@@ -34,8 +37,10 @@ export class PlayPageComponent implements OnInit {
         }
     }
 
+    /*
+    Generates Spotify api-token with client ID and client Secret. Uses token to generate track from Spotify API based off of user input. If track has been played previously or no track can be found with current values reduce popularity and try again.
+    */
     async generateTrack(popular: number) {
-
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;
@@ -50,7 +55,6 @@ export class PlayPageComponent implements OnInit {
                         artist: track.artists[0].name
                     };
                     this.previousSongs.push(track.id);
-
                     this.quizService.setSong(this.song);
                 } else {
                     this.generateTrack(-3);
@@ -61,12 +65,8 @@ export class PlayPageComponent implements OnInit {
         }
     }
 
-    correctAnswer(): void {
-        this.generateTrack(-3);
-    }
-
-    wrongAnswer(): void {
-        this.generateTrack(3);
+    changeDif(number: number): void {
+        this.generateTrack(number);
     }
 
     transform(url: any): SafeResourceUrl {

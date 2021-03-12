@@ -5,13 +5,14 @@ iframe {
 }
 
 .player_frame {
+    margin-top: 50px;
     padding: 20px 0;
     border-radius: 15px;
 }
 
 .info-frame {
     min-height: 200px;
-    background: #1b1c1b;
+    background: rgb(17,18,17);
 }
 
 .headingText {
@@ -31,7 +32,7 @@ iframe {
 
 .songInfo {
     text-align: left;
-    background-color: black;
+    background-color: rgb(17,18,17);;
 }
 
 .buttons {

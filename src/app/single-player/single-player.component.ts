@@ -9,17 +9,13 @@ import { PlayPageComponent } from '../play-page/play-page.component';
 })
 export class SinglePlayerComponent implements OnInit {
 
-    song: any;
-    correct = 0;
-    streak = 0;
-    playerAnswer = '';
-    playerStreak = 0;
+    playerAnswer: string = '';
+    playerStreak: number = 0;
     parentComponent: any;
 
 
     constructor(private quiz: QuizService, private injector: Injector) {
         this.parentComponent = this.injector.get(PlayPageComponent);
-
     }
 
     ngOnInit(): void {
@@ -27,19 +23,19 @@ export class SinglePlayerComponent implements OnInit {
     }
 
     checkAnswer(answer: any): void {
-        this.song = this.quiz.getSong();
-        const songName = this.song.title.toLowerCase().split('-')[0].split('(')[0].trim();
+        let song = this.quiz.getSong();
+        const songName = song.title.toLowerCase().split('-')[0].split('(')[0].trim();
 
         if (answer.toLowerCase() === songName) {
-            this.playerAnswer = 'rätt svar';
+            this.playerAnswer = 'Correct';
             this.playerStreak++;
-            setTimeout(() => { this.parentComponent.correctAnswer() }, 2000);
+            setTimeout(() => { this.parentComponent.changeDif(-3) }, 2000);
         } else {
-            this.playerAnswer = 'fel svar';
+            this.playerAnswer = 'Incorrect';
             this.playerStreak = 0;
             this.parentComponent.isShow = false;
             setTimeout(() => this.parentComponent.isShow = true, 1900);
-            setTimeout(() => { this.parentComponent.wrongAnswer() }, 2000);
+            setTimeout(() => { this.parentComponent.changeDif(3) }, 2000);
         }
         setTimeout(() => this.playerAnswer = '', 1900);
     }
