@@ -41,6 +41,7 @@ export class PlayPageComponent implements OnInit {
     Generates Spotify api-token with client ID and client Secret. Uses token to generate track from Spotify API based off of user input. If track has been played previously or no track can be found with current values reduce popularity and try again.
     */
     async generateTrack(popular: number) {
+        console.log(this.popularity);
         const token: { access_token?: string } = await this.api.generateToken();
         const genreList = this.genreSeeds;
         this.popularity = +this.popularity + popular;

@@ -1,7 +1,7 @@
 <div>
     <div class="row mx-auto" *ngFor="let player of players; let i=index">
-        <button (click)="addPoint(i)" class="quiz-btn btn-circle">+</button>
         <button (click)="removePoint(i)" class="quiz-btn btn-circle">-</button>
+        <button (click)="addPoint(i)" class="quiz-btn btn-circle">+</button>
         <p class="p-1">{{player.points}} Points - {{player.name}} </p>
     </div>
 </div>
